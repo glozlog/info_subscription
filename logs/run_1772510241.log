@@ -1,0 +1,9 @@
+Loading configuration...
+[2026-03-03 11:57:21] Starting update job (days_limit=3, target=量化投资邢不行啊)...
+Filtered subscriptions: 1/6 matched '量化投资邢不行啊'
+Fetching from 量化投资邢不行啊 (douyin)...
+Attempting fetch via RSSHub: http://localhost:1200/douyin/user/MS4wLjABAAAA9lwxwRIw3UpuTXj0_C3upyYDg74QysOH8w3yVdNCWv83EnQHyqEGMgtMdqSY2o4Q
+  - Fetched 20 items
+  - Filtered to 0 items (within 3 days)
+No new items fetched.
+[2026-03-03 11:57:23] Update job completed.

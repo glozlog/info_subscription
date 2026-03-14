@@ -1,0 +1,29 @@
+Loading configuration...
+[2026-03-03 09:53:20] Starting update job (days_limit=3, target=None)...
+Fetching from ÃÀÍ¶½²ÃÀ¹É (douyin)...
+Attempting fetch via RSSHub: http://localhost:1200/douyin/user/MS4wLjABAAAAyvVEqOEIqpt9h1IU0fpvJzvVEPsABP6fN0jqNQy2ePI
+  - Fetched 18 items
+  - Filtered to 0 items (within 3 days)
+Fetching from Á¿»¯Í¶×ÊĞÏ²»ĞĞ°¡ (douyin)...
+Attempting fetch via RSSHub: http://localhost:1200/douyin/user/MS4wLjABAAAA9lwxwRIw3UpuTXj0_C3upyYDg74QysOH8w3yVdNCWv83EnQHyqEGMgtMdqSY2o4Q
+  - Fetched 20 items
+  - Filtered to 0 items (within 3 days)
+Fetching from ·çÔ¶94 (rss)...
+  - Fetched 10 items
+  - Filtered to 0 items (within 3 days)
+Fetching from Í¶×Ê¾ÛÒåÌü (rss)...
+  - Fetched 10 items
+  - Filtered to 1 items (within 3 days)
+  - [Skip] Already in DB: ÖÜ¶È¸´ÅÌ£ºÔÙÌ¸Ä©ÈÕ¾ç±¾ÓëOpenAI
+Fetching from Ë¼Ïë¸ÖÓ¡ (rss)...
+  - Fetched 20 items
+  - Filtered to 3 items (within 3 days)
+  - [Skip] Already in DB: ÈçºÎ°ÑÎÕ¡°¿Ö²À¹È¡±´øÀ´µÄAIÍ¶×Ê»ú»á£¿
+  - [Skip] Already in DB: ÖªÊ¶ĞÇÇò³ÖĞøÔËÓª6ÄêÁË£¡
+  - [Skip] Already in DB: ÃÀ¹É»á²»»áÔÚ»ıÀÛÒ»´Î±©µø£¿£¨ÓĞÎÊÓĞ´ğ£©
+Fetching from äº§å“å› (douyin)...
+Attempting fetch via RSSHub: http://localhost:1200/douyin/user/MS4wLjABAAAAVmG_pTXp3pvTEwF7Cm3te2-s_RDjXsCMf3n4sgs-63u-0xRsmvBdm6gj3rjNKaR-
+  - Fetched 18 items
+  - Filtered to 0 items (within 3 days)
+No new items fetched.
+[2026-03-03 09:53:48] Update job completed.

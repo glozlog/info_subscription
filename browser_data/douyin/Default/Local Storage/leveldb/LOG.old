@@ -1,0 +1,18 @@
+2026/03/14-07:02:30.834 22a0 Reusing MANIFEST D:\TRAE\信息订阅\browser_data\douyin\Default\Local Storage\leveldb/MANIFEST-000001
+2026/03/14-07:02:30.838 22a0 Recovering log #82
+2026/03/14-07:02:30.846 22a0 Level-0 table #85: started
+2026/03/14-07:02:30.887 22a0 Level-0 table #85: 29374 bytes OK
+2026/03/14-07:02:30.887 22a0 Recovering log #84
+2026/03/14-07:02:30.890 22a0 Reusing old log D:\TRAE\信息订阅\browser_data\douyin\Default\Local Storage\leveldb/000084.log 
+2026/03/14-07:02:30.963 22a0 Delete type=0 #82
+2026/03/14-07:02:30.964 3158 Compacting 4@0 + 1@1 files
+2026/03/14-07:02:31.024 3158 Generated table #86@0: 61 keys, 42417 bytes
+2026/03/14-07:02:31.024 3158 Compacted 4@0 + 1@1 files => 42417 bytes
+2026/03/14-07:02:31.087 3158 compacted to: files[ 0 1 0 0 0 0 0 ]
+2026/03/14-07:02:31.107 3158 Delete type=2 #76
+2026/03/14-07:02:31.107 3158 Delete type=2 #79
+2026/03/14-07:02:31.107 3158 Delete type=2 #81
+2026/03/14-07:02:31.107 3158 Delete type=2 #83
+2026/03/14-07:02:31.107 3158 Delete type=2 #85
+2026/03/14-07:02:56.856 22a0 Level-0 table #88: started
+2026/03/14-07:02:57.002 22a0 Level-0 table #88: 29352 bytes OK

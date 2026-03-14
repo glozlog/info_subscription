@@ -1,0 +1,24 @@
+Import Error: No module named 'dashscope'
+Traceback (most recent call last):
+  File "D:\TRAE\信息订阅\generate_summary.py", line 19, in <module>
+    from src.summarizer.llm_summarizer import OpenAISummarizer
+  File "D:\TRAE\信息订阅\src\summarizer\llm_summarizer.py", line 4, in <module>
+    import dashscope
+ModuleNotFoundError: No module named 'dashscope'
+
+DEBUG: sys.executable: D:\Anaconda\python.exe
+DEBUG: sys.path: ['D:\\TRAE\\信息订阅', 'D:\\Anaconda\\python313.zip', 'D:\\Anaconda\\DLLs', 'D:\\Anaconda\\Lib', 'D:\\小番茄C盘清理软件搬家目录\\Anaconda3 2025.06-0 (Python 3.13.5 64-bit)\\Anaconda', 'D:\\Anaconda', 'D:\\Anaconda\\Lib\\site-packages', 'D:\\Anaconda\\Lib\\site-packages\\win32', 'D:\\Anaconda\\Lib\\site-packages\\win32\\lib', 'D:\\Anaconda\\Lib\\site-packages\\Pythonwin', 'D:\\TRAE\\信息订阅']
+Import Error: No module named 'dashscope'
+Traceback (most recent call last):
+  File "D:\TRAE\信息订阅\generate_summary.py", line 23, in <module>
+    from src.summarizer.llm_summarizer import OpenAISummarizer
+  File "D:\TRAE\信息订阅\src\summarizer\llm_summarizer.py", line 4, in <module>
+    import dashscope
+ModuleNotFoundError: No module named 'dashscope'
+
+DEBUG: sys.executable: D:\TRAE\信息订阅\.venv\Scripts\python.exe
+DEBUG: sys.path: ['D:\\TRAE\\信息订阅', 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\python313.zip', 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\DLLs', 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\Lib', 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0', 'D:\\TRAE\\信息订阅\\.venv', 'D:\\TRAE\\信息订阅\\.venv\\Lib\\site-packages', 'D:\\TRAE\\信息订阅']
+DEBUG: sys.executable: D:\TRAE\信息订阅\.venv\Scripts\python.exe
+DEBUG: sys.path: ['D:\\TRAE\\信息订阅', 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\python313.zip', 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\DLLs', 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\Lib', 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0', 'D:\\TRAE\\信息订阅\\.venv', 'D:\\TRAE\\信息订阅\\.venv\\Lib\\site-packages', 'D:\\TRAE\\信息订阅']
+DEBUG: sys.executable: D:\TRAE\信息订阅\.venv\Scripts\python.exe
+DEBUG: sys.path: ['D:\\TRAE\\信息订阅', 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\python313.zip', 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\DLLs', 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\Lib', 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0', 'D:\\TRAE\\信息订阅\\.venv', 'D:\\TRAE\\信息订阅\\.venv\\Lib\\site-packages', 'D:\\TRAE\\信息订阅']

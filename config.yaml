@@ -1,0 +1,53 @@
+douyin:
+  sessionid: 53bda0af3c47cfb31f2a0f5b8b3a8778
+output:
+  directory: archives
+  format: markdown
+scheduler:
+  times:
+  - '07:00'
+subscriptions:
+- category: 金融
+  name: 美投讲美股
+  platform: douyin
+  url: https://www.douyin.com/user/MS4wLjABAAAAyvVEqOEIqpt9h1IU0fpvJzvVEPsABP6fN0jqNQy2ePI
+- category: 金融
+  name: 量化投资邢不行啊
+  platform: douyin
+  url: https://www.douyin.com/user/MS4wLjABAAAA9lwxwRIw3UpuTXj0_C3upyYDg74QysOH8w3yVdNCWv83EnQHyqEGMgtMdqSY2o4Q
+- category: 金融
+  name: 风远94
+  platform: wechat2rss
+  url: '3240469691'
+- category: 金融
+  name: 投资聚义厅
+  platform: wechat2rss
+  url: '3279420503'
+- category: 金融
+  name: 思想钢印
+  platform: wechat2rss
+  url: '3091999683'
+- category: 金融
+  name: 荒原投资凌鹏的策略随笔
+  platform: wechat2rss
+  url: '3224422740'
+- category: AI
+  name: 产品君
+  platform: douyin
+  url: https://www.douyin.com/user/MS4wLjABAAAAVmG_pTXp3pvTEwF7Cm3te2-s_RDjXsCMf3n4sgs-63u-0xRsmvBdm6gj3rjNKaR-
+- category: 时政
+  name: 学院派Academia
+  platform: douyin
+  url: https://www.douyin.com/user/MS4wLjABAAAAB3Qx5iT-XPUp54-wBHTac06qDEKdyWUmKhcIwTIyS5Q25jt7CBoRK-OS-N1ha4Yk
+- category: 时政
+  name: 狐狸的观念
+  platform: douyin
+  url: https://www.douyin.com/user/MS4wLjABAAAA25xxS-4HJ5PYicMjFpvzlYR_oe37SK-ryMNQZs-ilpdFNy7iaGBWl3cyQIsPirtB
+- category: 生活
+  name: IC实验室馆长
+  platform: douyin
+  url: https://www.douyin.com/user/MS4wLjABAAAAoXm3UTY6L_aOBfJxd0Y8B9ojQS4rUUWwDK-iEre3opQ
+summarizer:
+  api_key: sk-7a2537a586f34ab98b55f99bc1430c7e
+  model: qwen-plus
+  provider: dashscope

@@ -1,0 +1,14 @@
+The provided content appears to be a Douyin (TikTok China) video thumbnail and link with a provocative, clickbait-style title:  
+**“Who still believes in ‘national fortune’ and dollar-cost-averages into the Nasdaq? Is A-share actually more profitable than U.S. stocks?”**
+
+However, **no actual article text, data, analysis, or arguments are included** in the submission—only a title, an image link, and a video link. As such:
+
+🔹 **No core arguments or key points can be extracted or summarized**, because the substantive content (e.g., methodology, timeframes, performance metrics, risk-adjusted returns, data sources, or definitions of “more profitable”) is absent.  
+🔹 The title *suggests* a contrarian thesis challenging two popular narratives:  
+ 1. The belief in China’s “national fortune” (a colloquial term for long-term macro optimism about China’s growth), and  
+ 2. The widespread retail strategy of blindly DCA-ing into the Nasdaq-100 (e.g., via QQQ or similar ETFs).  
+🔹 It *hints* at empirical claims—possibly comparing historical risk-adjusted returns, volatility, drawdowns, or valuation metrics between A-shares (e.g., CSI 300) and U.S. indices (e.g., Nasdaq-100 or S&P 500)—but without the video or transcript, these remain speculative.
+
+✅ **Bottom line**: This is metadata—not analyzable content. A meaningful summary requires access to the video’s script, charts, or supporting evidence. As delivered, it functions only as a headline prompting curiosity—not a source for substantive analysis.
+
+Let me know if you'd like help designing a rigorous framework to *test* that claim (e.g., backtesting DCA strategies across A-shares vs. Nasdaq since 2010, adjusting for FX, fees, and taxes).

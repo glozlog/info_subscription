@@ -1,0 +1,26 @@
+Loading configuration...
+[2026-03-03 12:08:14] Starting update job (days_limit=0, target=美投讲美股)...
+Filtered subscriptions: 1/6 matched '美投讲美股'
+Fetching from 美投讲美股 (douyin)...
+Attempting fetch via RSSHub: http://localhost:1200/douyin/user/MS4wLjABAAAAyvVEqOEIqpt9h1IU0fpvJzvVEPsABP6fN0jqNQy2ePI
+  - Fetched 18 items
+  - [Skip] Already in DB: 散户实现财富质变的最佳方法！了解这一点，少走10年弯路！ #投资 #股票 #财经 #知识 #金融
+  - [Skip] Already in DB: 为何AI这么强，却不赚钱？AI泡沫即将破裂？ #AI #股票 #投资 #金融 #财经
+  - [Skip] Already in DB: AI即将颠覆软件业？为何大机构也要逃离？软件股是不是被错杀？ #财经 #股票 #经济 #金融 #AI
+  - [Skip] Already in DB: 最稳科技股都崩盘？科技股危机？微软6年来最大暴跌！ #股票 #财经 #经济 #金融 #科技
+  - [Skip] Already in DB: 白银收盘下跌31.4%，崩盘还是来了
+  - [Skip] Already in DB: 6大指标，1套金融模型，告诉你现在投资AI究竟有多危险？ #AI #投资 #金融 #财经 #经济
+  - [Skip] Already in DB: 美债引发连锁危机！机构+央行已然行动，你该如何应对？ #投资 #股票 #财经 #经济 #金融
+  - [Skip] Already in DB: 暴涨150%！白银狂飙背后，你需要了解什么？ #黄金 #投资 #经济 #财经 #投资
+  - [Skip] Already in DB: 26年美股前瞻（中）AI投资重大改变！美股目标8800点？ #金融 #AI #股票 #投资 #财经
+  - [Skip] Already in DB: 2026美股前瞻（上）连续大涨3年，还能否继续？ #经济 #股票 #投资 #金融 #财经
+  - [Skip] Already in DB: AI巨头之争！两大阵营谁将胜出？历史早已给出答案！ #AI #股票 #投资 #财经 #金融
+  - [Skip] Already in DB: 现在投资AI有多危险？6大泡沫指标，给你揭晓答案！ #财经 #金融 #AI #股票 #股民
+  - [Skip] Already in DB: 所有散户必看！从最底层原理解释，为何散户加杠杆注定失败？ #投资 #知识分享 #财经 #金融 #股票
+  - [Skip] Already in DB: 美股信心崩溃？大跌何时触底？1信号判断真正熊市！ #经济 #金融 #财经 #股票 #投资
+  - [Skip] Already in DB: 15年250倍？这是散户致富捷径？TQQQ隐藏的惊人真相！ #投资 #股票#财经 #知识分享 #金融
+  - [Skip] Already in DB: 特斯拉又开始憋大招了？能开始布局了吗？ #特斯拉 #股票 #金融 #财经 #经济
+  - [Skip] Already in DB: 关于创业，关于赚钱，关于个人成长的故事 #投资 #知识分享 #创业
+  - [Skip] Already in DB: SORA2大火！OpenAI野心到底在哪？Meta要被颠覆？ #AI #科技 #股票 #财经 #金融
+No new items fetched.
+[2026-03-03 12:08:16] Update job completed.

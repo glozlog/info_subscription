@@ -1,0 +1,9 @@
+Loading configuration...
+[2026-03-03 11:57:49] Starting update job (days_limit=3, target=美投讲美股)...
+Filtered subscriptions: 1/6 matched '美投讲美股'
+Fetching from 美投讲美股 (douyin)...
+Attempting fetch via RSSHub: http://localhost:1200/douyin/user/MS4wLjABAAAAyvVEqOEIqpt9h1IU0fpvJzvVEPsABP6fN0jqNQy2ePI
+  - Fetched 18 items
+  - Filtered to 0 items (within 3 days)
+No new items fetched.
+[2026-03-03 11:58:04] Update job completed.

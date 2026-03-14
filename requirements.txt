@@ -1,0 +1,12 @@
+pyyaml
+schedule
+requests
+openai
+dashscope
+beautifulsoup4
+feedparser
+streamlit
+pandas
+psutil
+selenium
+playwright

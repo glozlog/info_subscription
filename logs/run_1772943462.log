@@ -1,0 +1,283 @@
+Loading configuration...
+[2026-03-08 12:17:43] Starting update job (days_limit=0, target=None)...
+Fetching from 美投讲美股 (douyin)...
+Fetching https://www.douyin.com/user/MS4wLjABAAAAyvVEqOEIqpt9h1IU0fpvJzvVEPsABP6fN0jqNQy2ePI via Playwright (Source: 美投讲美股)...
+Starting Playwright fetch for https://www.douyin.com/user/MS4wLjABAAAAyvVEqOEIqpt9h1IU0fpvJzvVEPsABP6fN0jqNQy2ePI...
+Navigating to https://www.douyin.com/user/MS4wLjABAAAAyvVEqOEIqpt9h1IU0fpvJzvVEPsABP6fN0jqNQy2ePI...
+Attempt 1/2...
+Network idle timeout, continuing...
+Page loaded successfully (list found).
+Found author name from h1: 美投讲美股
+Found main user-post-list container.
+Found 19 list items/cards.
+  - Fetched 18 items
+  - [Skip] Already in DB: 美投讲美股：散户实现财富质变的最佳方法！了解这一点，少走10年弯路！ #投资 #股票 #财经 #知识  #金融
+  - [Skip] Already in DB: 美投讲美股：为何AI这么强，却不赚钱？AI泡沫即将破裂？ #AI #股票 #投资 #金融 #财经
+  - [Skip] Already in DB: 美投讲美股：AI即将颠覆软件业？为何大机构也要逃离？软件股是不是被错杀？ #财经 #股票 #经济 #金融 #AI
+  - [Skip] Already in DB: 美投讲美股：最稳科技股都崩盘？科技股危机？微软6年来最大暴跌！ #股票 #财经 #经济 #金融 #科技
+  - [Skip] Already in DB: 美投讲美股：白银收盘下跌31.4%，崩盘还是来了
+  - [Skip] Already in DB: 美投讲美股：6大指标，1套金融模型，告诉你现在投资AI究竟有多危险？ #AI #投资 #金融  #财经 #经济
+  - [Skip] Already in DB: 美投讲美股：美债引发连锁危机！机构+央行已然行动，你该如何应对？ #投资 #股票 #财经 #经济 #金融
+  - [Skip] Already in DB: 美投讲美股：暴涨150%！白银狂飙背后，你需要了解什么？ #黄金 #投资 #经济 #财经 #投资
+  - [Skip] Already in DB: 美投讲美股：26年美股前瞻（中）AI投资重大改变！美股目标8800点？ #金融 #AI #股票 #投资 #财经
+  - [Skip] Already in DB: 美投讲美股：2026美股前瞻（上）连续大涨3年，还能否继续？ #经济 #股票 #投资 #金融 #财经
+  - [Skip] Already in DB: 美投讲美股：AI巨头之争！两大阵营谁将胜出？历史早已给出答案！ #AI #股票 #投资 #财经 #金融
+  - [Skip] Already in DB: 美投讲美股：现在投资AI有多危险？6大泡沫指标，给你揭晓答案！ #财经 #金融 #AI #股票 #股民
+  - [Skip] Already in DB: 美投讲美股：所有散户必看！从最底层原理解释，为何散户加杠杆注定失败？ #投资 #知识分享 #财经 #金融 #股票
+  - [Skip] Already in DB: 美投讲美股：美股信心崩溃？大跌何时触底？1信号判断真正熊市！ #经济 #金融 #财经 #股票 #投资
+  - [Skip] Already in DB: 美投讲美股：15年250倍？这是散户致富捷径？TQQQ隐藏的惊人真相！ #投资 #股票#财经 #知识分享 #金融
+  - [Skip] Already in DB: 美投讲美股：特斯拉又开始憋大招了？能开始布局了吗？ #特斯拉 #股票 #金融 #财经 #经济
+  - [Skip] Already in DB: 美投讲美股：关于创业，关于赚钱，关于个人成长的故事 #投资 #知识分享 #创业
+  - [Skip] Already in DB: 美投讲美股：SORA2大火！OpenAI野心到底在哪？Meta要被颠覆？ #AI #科技 #股票 #财经 #金融
+Fetching from 量化投资邢不行啊 (douyin)...
+Fetching https://www.douyin.com/user/MS4wLjABAAAA9lwxwRIw3UpuTXj0_C3upyYDg74QysOH8w3yVdNCWv83EnQHyqEGMgtMdqSY2o4Q via Playwright (Source: 量化投资邢不行啊)...
+Starting Playwright fetch for https://www.douyin.com/user/MS4wLjABAAAA9lwxwRIw3UpuTXj0_C3upyYDg74QysOH8w3yVdNCWv83EnQHyqEGMgtMdqSY2o4Q...
+Navigating to https://www.douyin.com/user/MS4wLjABAAAA9lwxwRIw3UpuTXj0_C3upyYDg74QysOH8w3yVdNCWv83EnQHyqEGMgtMdqSY2o4Q...
+Attempt 1/2...
+Network idle timeout, continuing...
+Page loaded successfully (list found).
+Found author name from h1: 量化投资邢不行啊
+Found main user-post-list container.
+Found 22 list items/cards.
+  - Fetched 20 items
+  - [Skip] Already in DB: 量化投资邢不行啊：挑战每天买烂板股票，不仅没亏光还赚了 100 倍？ #量化 #炒股 #投资 #金融 #掘金计划2025
+  - [Skip] Already in DB: 量化投资邢不行啊：跌停买入，稳赚不赔？全网爆火的跌停板战法靠谱吗？ #跌停板 #投资 #炒股 #量化 #掘金计划2025
+  - [Skip] Already in DB: 量化投资邢不行啊：AI自动炒股，秒杀巴菲特？GPT写的量化程序靠谱吗？ #量化 #量化投资 #炒股 #AI炒股 #掘金计划2025
+  - [Skip] Already in DB: 量化投资邢不行啊：买完就赚,永久躺平?全网狂吹,永久投资组合,能持续赚吗? #量化投资 #金融 #股票 #永久投资组合 #掘金计划2026
+  - [Skip] Already in DB: 量化投资邢不行啊：趋势之王or虚有其表？ A股均线知多少？ #量化投资 #理财 #A股 #股票 #掘金计划2026
+  - [Skip] Already in DB: 量化投资邢不行啊：最牛反指、短线之王、空头的神？谁是A股最强K线？ #量化投资#理财 #炒股#股票  #掘金计划2026
+  - [Skip] Already in DB: 量化投资邢不行啊：谁还在相信国运，定投纳指？A股其实比美股更赚钱？ #量化投资 #A股 #美股 #金融 #掘金计划2026
+  - [Skip] Already in DB: 量化投资邢不行啊：实盘战绩全网第1?三位量化大师混战,谁的策略技高一筹? #量化投资 #金融 #炒股 #AI #掘金计划2026
+  - [Skip] Already in DB: 量化投资邢不行啊：大A连续放量新高，历史上看后续怎么走？ #量化投资 #金融 #炒股 #理财 #掘金计划2025
+  - [Skip] Already in DB: 量化投资邢不行啊：A股17连阳过后，后续怎么走？ #量化投资 #金融 #A股 #编程 #掘金计划2026
+  - [Skip] Already in DB: 量化投资邢不行啊：跟着主力混,3天饿9顿?纯干货,手把手教你魔改量化策略！ #量化投资 #金融 #炒股 #理财 #掘金计划2026
+  - [Skip] Already in DB: 量化投资邢不行啊：跟着主力买,别墅靠大海?A股主力竟是我自己? #量化投资 #炒股 #理财 #编程 #掘金计划2026
+  - [Skip] Already in DB: 量化投资邢不行啊：A股熊市底在哪?还有多少人看涨?如何量化投资者情绪? #量化交易  #股票  #python  #A股  #掘金计划2026
+  - [Skip] Already in DB: 量化投资邢不行啊：用python找出200万次KDJ金叉,上涨概率是多少? #量化投资 #KDJ #编程 #炒股 #掘金计划2025
+  - [Skip] Already in DB: 量化投资邢不行啊：大数据验证,76%胜率的抄底指标?量化大师就一定靠谱吗? #量化投资 #金融 #炒股 #理财 #掘金计划2025
+  - [Skip] Already in DB: 量化投资邢不行啊：散户不屑一顾的冷门股，竟是A股最大金矿？ #量化投资 #金融 #炒股 #散户 #掘金计划2025
+  - [Skip] Already in DB: 量化投资邢不行啊：100%预测大盘走势的情绪指标?大师的择时策略靠谱吗？ #量化投资 #金融 #炒股 #理财 #掘金计划2025
+  - [Skip] Already in DB: 量化投资邢不行啊：低风险、高收益？可转债缘何走上神坛？网红可转债策略能赚钱吗? #量化投资 #金融 #炒股 #可转债 #掘金计划2025
+  - [Skip] Already in DB: 量化投资邢不行啊：巴菲特的捡烟蒂策略还赚钱吗?股票估值越低越好吗? #量化投资 #炒股 #市盈率 #巴菲特 #掘金计划2025
+  - [Skip] Already in DB: 量化投资邢不行啊：反常识！科研巨头扎堆夕阳行业？A股研发之王竟是它？ #量化投资 #金融 #炒股 #研发费用 #掘金计划2025
+Fetching from 风远94 (rss)...
+  - Fetched 10 items
+  - [Skip] Already in DB: 深夜记录十年未有的感觉
+  - [Skip] Already in DB: Token的裂变与vibe coding的成瘾
+  - [Skip] Already in DB: Ai的通缩与繁荣-系列研讨会1
+  - [Skip] Already in DB: ai的文艺复兴时代
+  - [Skip] Already in DB: 拥抱ai native
+  - [Skip] Already in DB: 未来两年的ai投资的核心是围绕三个供给切换
+  - [Skip] Already in DB: token与云计算及应用的水位差带来的产业机会
+  - [Skip] Already in DB: moltbook会是人类历史上最大的社会学实验吗
+  - [Skip] Already in DB: Ai应用的故事刚刚开始
+  - [Skip] Already in DB: 应用繁荣的xx年？
+Fetching from 投资聚义厅 (rss)...
+  - Fetched 10 items
+  - [Skip] Already in DB: 周度复盘：再谈末日剧本与OpenAI
+  - [Skip] Already in DB: Citadel报告：为什么Citrini的叙事是错的
+  - [Skip] Already in DB: 单枪匹马，心有千军
+  - [Skip] Already in DB: Robinhood：十年之后
+  - [Skip] Already in DB: 上帝来做主动投资也会下岗
+  - [Skip] Already in DB: 周度复盘：互斥的鬼故事
+  - [Skip] Already in DB: The Bubble Era（上）
+  - [Skip] Already in DB: 不是卖课
+  - [Skip] Already in DB: 周度复盘：裙下之臣
+  - [Skip] Already in DB: 周度复盘：树大招风
+Fetching from 思想钢印 (rss)...
+  - Fetched 20 items
+  - [Skip] Already in DB: 如何把握“恐怖谷”带来的AI投资机会？
+  - [Skip] Already in DB: 知识星球持续运营6年了！
+  - [Skip] Already in DB: 美股会不会在积累一次暴跌？（有问有答）
+  - [Skip] Already in DB: 买了个寂寞
+  - [Skip] Already in DB: 储能赛道狭路相逢：如何分析制造业的商业模式？
+  - [Skip] Already in DB: 知识星球持续运营6年了！
+  - [Skip] Already in DB: 选股能力弱怎么办？
+  - [Skip] Already in DB: 投资大师的重仓出击，为什么不能简单抄作业
+  - [Skip] Already in DB: 消费长期下行周期，可能才刚刚开始
+  - [Skip] Already in DB: 知识星球持续运营6年了！
+  - [Skip] Already in DB: 美联储如果缩表，利好利空哪一类资产（有问有答）
+  - [Skip] Already in DB: 软件股会跌出机会来吗？只有这三类
+  - [Skip] Already in DB: 真正懂消费股投资的人，都在关注线下新机会
+  - [Skip] Already in DB: 更重要的是在假象被公众认识之前退出
+  - [Skip] Already in DB: 为什么监管不怕把“牛”摁死？
+  - [Skip] Already in DB: 思想钢印知识星球：荣登星球实力榜
+  - [Skip] Already in DB: 格陵兰岛危机最后会如何收场？
+  - [Skip] Already in DB: 对于红利，逆风期也是耕耘时
+  - [Skip] Already in DB: 2026年，主动跑赢量化？
+  - [Skip] Already in DB: 思想钢印知识星球：荣登星球实力榜
+Fetching from 产品君 (douyin)...
+Fetching https://www.douyin.com/user/MS4wLjABAAAAVmG_pTXp3pvTEwF7Cm3te2-s_RDjXsCMf3n4sgs-63u-0xRsmvBdm6gj3rjNKaR- via Playwright (Source: 产品君)...
+Starting Playwright fetch for https://www.douyin.com/user/MS4wLjABAAAAVmG_pTXp3pvTEwF7Cm3te2-s_RDjXsCMf3n4sgs-63u-0xRsmvBdm6gj3rjNKaR-...
+Navigating to https://www.douyin.com/user/MS4wLjABAAAAVmG_pTXp3pvTEwF7Cm3te2-s_RDjXsCMf3n4sgs-63u-0xRsmvBdm6gj3rjNKaR-...
+Attempt 1/2...
+Network idle timeout, continuing...
+Page loaded successfully (list found).
+Found author name from h1: 产品君
+Found main user-post-list container.
+Found 19 list items/cards.
+  - Fetched 18 items
+  - Summarizing: 产品君：抖音前沿科技30X30｜采访AI超级个体 Gemini 3发布后，这5个开发者给自己的人生装上了外挂。
+27年程序员老兵：用AI写出多部长篇小说，一边敲代码一边圆武侠梦 ；
+硬核奶爸：手搓本地AI操作系统，把私教装进孩子口袋；
+AI安全研究员：把AI变成科研副驾，打破思维墙；
+有效加速主义者：打造AI全自动分身，让AI替自己看新闻处理琐事；
+全栈讲师：降低新手学习门槛，把技术文档自动变成PPT；
+本期视频，产品君连线5位GDE谷歌开发者专家，带你拆解AI时代的超级个体，听听他们给普通人的真诚建议。 
+#前沿科技趋势发布月 #抖音知识年终大赏  #AI新星计划 #AI #Google
+  - Summarizing: 产品君：盘点一周AI大事(3月1日)｜龙虾开车跑滴滴 工程师开发出首个能自主进化的龙虾Ouroboros
+Anthropic官宣龙虾摩尔定律
+Claude全面升级为龙虾
+Cursor上线程序员龙虾Cursor cloud agents
+Perplexity上线云端龙虾Perplexity Computer
+MiniMax上线云端龙虾 MaxClaw
+阿里开源国产龙虾CoPaw
+Standard Intelligence发布最强电脑操作模型FDM-1
+Confluence实验室开源通用求解龙虾
+Google上线最强生图模型Nano Banana 2
+Quiver发布最强矢量图模型 Arrow 1.0
+Meta开源最强矢量字体模型VecGlypher
+英伟达发布VR视频模型Generated Reality
+研究员开源VR老婆Sarah 
+#抖音年味新知贺岁  #前沿科技趋势发布月 #AIGC #龙虾 #openclaw
+  - Summarizing: 产品君：盘点一周AI大事(2月22日)｜不赚钱拔网线，龙虾狂赚1万 工程师开源龙虾打工人ClawWork，10刀开局，7小时狂赚1万刀
+工程师Sigil开源首个全自主智能体The Automaton
+Kimi上线云端龙虾Kimi Claw
+网易开源桌面版龙虾LobsterAI
+Google上线地表最强大模型Gemini 3.1 Pro
+Gemini接入音乐模型 Lyria 3
+NotebookLM升级，动动嘴就能修改PPT，还支持导出PPTX格式
+Anthropic发布Claude Sonnet 4.6
+Claude与Figma官宣史诗联动，Claude Code写的页面能一键导入Figma
+阿里开源最强行动智能体 Mobile-Agent-v3.5
+字节开源极速生图模型BitDance
+Tavus发布最强数字人模型Phoenix-4
+Taalas研发出革命性AI芯片HC1 
+#抖音年味新知贺岁  #前沿科技趋势发布月 #AI新星计划 #OpenAI #智能体
+  - Summarizing: 产品君：盘点一周AI大事(2月15日)｜王炸视频模型 字节正式上线最强视频模型「Seedance 2.0」
+字节发布最强开源视频模型「Alive」
+工程师davidohyun开源龙虾女友「Clawra」爆火
+Google升级最强推理模型「Gemini 3 Deep Think」
+智谱发布最强开源大模型「GLM-5」
+MiniMax发布最强开源编码模型「M2.5」
+Google官宣AI互联网协议「WebMCP」
+Claude上线Windows版「Cowork」 
+Google Stitch炸裂升级 
+千问发布最强开源图像模型「Qwen-Image-2.0」 
+研究员开源最强语音合成模型「MOSS-TTS」 
+研究员推出最强开源音乐模型「SoulX-Singer」 
+研究员开源最强配音模型「Just-Dub-It」 
+#AI新星计划 #抖音年味新知贺岁  #前沿科技趋势发布月 #AIGC #人工智能
+  - Summarizing: 产品君：实测即梦 Seedance 2.0，一键穿越进电影 Seedance 2.0真是强得离谱，上传个自拍就能穿越到爱乐之城电影里。
+它那个全能参考能力太狠了，不仅能复刻主体，还能复刻声音动作和运镜，连视频的氛围感都能复刻。
+AIGC创作者真过年了！创作者可以在即梦使用新模型，企业用户可以在火山方舟体验新模型。
+#即梦视频Seedance2 #即梦图片Seedream5#爱乐之城十周年重映 #AI让我在爱乐之城里演爽了 #AI新春游园会
+  - Summarizing: 产品君：工作群变办公系统，AI小钉拯救打工人 钉钉新上的群聊助手「AI小钉」太实用了
+自动爬楼提炼要点、识别任务生成待办、精准定向催办，专治已读不回；
+还能按关键词每天推送行业/竞品/热点，把闲聊群变情报站；
+一句话改群名、发公告、设负责人，群管理直接动口不动手。
+AI不再是单独窗口，而是长在群里，@ 一下就能跑流程，群聊正在进化成真正的办公系统。 
+#钉钉 #AI小钉 #人工智能 #办公 #钉钉群聊
+  - Summarizing: 产品君：盘点一周AI大事2月8日｜AI相亲、AI当老板、AI狼人杀 Anthropic发布最强大模型Claude Opus 4.6
+OpenAI发布最强编码模型GPT5.3Codex
+OpenAI推出Codex桌面版
+Google上线AI狼人杀
+AI雇佣人类平台RentAHuman爆火
+AI雇佣AI平台ClawTasks爆火
+龙虾相亲平台MoltMatch爆火
+智谱开源最强OCR模型GLM-OCR
+字节发布最强视频模型Seedance 2.0
+研究员开源无痕编辑视频模型Edit Yourself
+字节开源最强分子预测模型Protenix-v1
+Google发布论文配图AI Paper Banana 
+#AI新星计划 #前沿科技趋势发布月 #AI #AIGC #OpenAI
+  - Summarizing: 产品君：盘点一周AI大事(2月1日)｜AI乌托邦魔幻开局 Google上线世界模型Project Genie
+阿里开源实时世界模型LingBot-World
+AI乌托邦社区Moltbook爆火
+Chrome升级为AI浏览器
+月之暗面发布最强开源大模型Kimi K2.5
+Gemini 3 Flash升级视觉能力
+腾讯发布最强开源图像模型HunyuanImage 3.0-Instruct
+阿里开源Z image Base满血版
+OpenMOSS发布最强开源视频模型MOVA
+MIniMax上线顶级音乐模型MiniMax Music 2.5
+英伟达开源天气预测模型Earth-2 
+#AI新星计划 #前沿科技趋势发布月 #抖音知识年终大赏 #AI #AIGC
+  - Summarizing: 产品君：盘点一周AI大事(1月25日)｜Agent进化，24小时打工 开源视频制作Remotion Skills爆火
+AI编程开无限画布插件Pencil 爆火
+开源个人AI助手Clawdbot爆火，7成24小时给你打工
+Claude Excel插件更新
+Runway上线最强视频模型Gen 4.5
+字节开源视频参考模型OminiTransfer
+字节发布最强数字人直播模型FlowACT R1
+阿里开源最强文本转语音模型Qwen 3 TTS 
+#AI新星计划 #抖音知识年终大赏  #AI #OpenAI #AIGC
+  - Summarizing: 产品君：实测用TRAE Skills接管工作流，打工人的自动化神器 #AI #AI编程 #TRAE #SOLO #Skills
+  - Summarizing: 产品君：实测扣子视频Agent，一句话量产爆款，适合起号的工具来了 #扣子Coze #AI #AIGC #智能体  #职场AI就用扣子
+  - Summarizing: 产品君：盘点一周AI大事(1月18日)｜OpenAI上演无间道 苹果官宣牵手Google，Siri将由Gemini驱动
+Gemini上线个人智能
+Claude上线电脑助手Cowork
+字节开源最强蛋白质预测模型SeedFold
+Show Lab开源会学习的行动智能体ShowUI-Aloha
+Show Lab开源鼠标智能体ShowUI-π
+Black Forest开源最强小香蕉平替FLUX.2 [klein]
+研究员发布最强开源音乐模型HeartMuLa
+阿里开源最强地理定位智能体 Thinking with Map
+Veo 3.1重磅升级，原生支持竖屏和4K画质 
+#抖音知识年终大赏  #前沿科技趋势发布月 #AI新星计划 #AIGC #OpenAI
+  - Summarizing: 产品君：盘点一周AI大事(1月11日)｜最强人形机器人 OpenAI公布2026研发路线图
+DeepSeek被爆2月发布DeepSeek V4
+Google推出Veo3驱动的数字人Vids
+字节开源换脸视频模型DreamID-V
+阿里开源数字人框架HRM2Avatar
+Lightricks开源顶级视频模型LTX-2
+ElevenLabs推出最强语音转录模型Scribe v2
+斯坦福开源睡眠分析模型SleepFM
+港大发布开源版NotebookLM DeepTutor
+Razer推出全息AI老婆Project AVA
+波士顿动力推出下一代Atlas 
+#抖音知识年终大赏  #前沿科技趋势发布月 #AI新星计划 #AI #机器人
+  - Summarizing: 产品君：神仙救急也用闪购，美团的AI短片太会玩了！ 孙悟空用按摩仪？后羿射日先防晒？ 
+不得不说，美团闪购这波AI广告真的戳我心了 
+本条视频带你拆解美团闪购AI短片的出圈案例 
+它用最离谱的脑洞，回应了最真实的需求，少一点自嗨炫技，多一点人味和共鸣。 
+大家觉得这波AI创意能打几分？ 
+#AI #AIGC #AI视频 #美团闪购 #好货快到惊喜来到
+  - Summarizing: 产品君：CES上英伟达再放王炸，AI史诗升级 #AI #英伟达 #NVIDIA #CES2026 #AIPC
+  - Summarizing: 产品君：盘点一周AI大事(1月4日)｜Google包揽年度最佳模型 LMArena大模型盲选排行榜公布年度冠军
+Google推出AI辅助学习系统Learn Your Way
+阿里开源最强手机智能体MAI-UI
+DeepSeek发布新研究mHC
+IQuest发布最强开源编码模型IQuest-Coder-V1
+字节发布动态概念大模型DLCM
+腾讯发布最强开源翻译模型HY-MT1.5
+阿里更新最强开源图像模型Qwen-Image-2512
+Meta开源极速视频生成模型HiStream
+研究员开源对象植入模型InsertAnywhere
+研究员开源MV智能体AutoMV
+腾讯开源3D动作生成模型Hunyuan Motion 1.0
+研究员开源高保真3D模型UltraShape
+研究员开源世界模型Yume 1.5 
+#前沿科技趋势发布月 #抖音知识年终大赏  #AI新星计划 #AI #AIGC
+  - Summarizing: 产品君：2025年度AI全景报告：AI变强，人类抽象！ 2025年的AI进化史，比科幻电影更疯狂
+一、大模型篇：GPT-5.2、Gemini、Claude如何刷爆IQ测试
+二、AIGC篇：小香蕉和GPT-Image编辑现实
+三、人类怎么用AI：跟“神”谈恋爱
+四、AI机器人：伴侣还是终结者
+五、AI4S：人类最后的发明 
+#前沿科技趋势发布月 #抖音知识年终大赏  #AI新星计划 #AI #机器人
+  - Summarizing: 产品君：盘点一周AI大事(12月28日)｜最强开源大模型易主 智谱发布最强开源大模型GLM 4.7
+MiniMax发布最强开源编码模型MiniMax M2.1
+阿里开源超长上下文模型QwenLong-L1.5
+字节发布最强数学模型Seed-Prover 1.5
+英伟达开源游戏智能体Nitrogen
+阿里开源语音对话模型Fun-Audio-Chat
+字节开源短剧视频模型StoryMem
+字节开源关键帧视频模型DreaMontage
+奥特曼认为通用人工智能已成为过去式，并提出超级人工智能定义 
+#前沿科技趋势发布月 #抖音知识年终大赏  #AI新星计划 #OpenAI #大模型
+Generating daily report for NEW items...
+JSON data saved to archives\daily_report_2026-03-08.json
+Markdown report saved to archives\daily_report_2026-03-08.md
+HTML report saved to archives\daily_report_2026-03-08.html
+[2026-03-08 12:21:50] Update job completed.

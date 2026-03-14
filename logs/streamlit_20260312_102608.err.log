@@ -1,0 +1,75 @@
+2026-03-13 20:36:21.624 Uncaught app execution
+Traceback (most recent call last):
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\scriptrunner\exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\scriptrunner\script_runner.py", line 689, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TRAE\信息订阅\web_app.py", line 1387, in <module>
+    main()
+    ~~~~^^
+  File "D:\TRAE\信息订阅\web_app.py", line 1383, in main
+    st.session_state.page_jump = st.session_state.current_page
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 532, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\state\session_state_proxy.py", line 136, in __setattr__
+    self[key] = value
+    ~~~~^^^^^
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 532, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\state\session_state_proxy.py", line 114, in __setitem__
+    get_session_state()[key] = value
+    ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\state\safe_session_state.py", line 109, in __setitem__
+    self._state[key] = value
+    ~~~~~~~~~~~^^^^^
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\state\session_state.py", line 591, in __setitem__
+    raise StreamlitAPIException(
+    ...<2 lines>...
+    )
+streamlit.errors.StreamlitAPIException: `st.session_state.page_jump` cannot be modified after the widget with key `page_jump` is instantiated.
+2026-03-13 20:36:31.188 Uncaught app execution
+Traceback (most recent call last):
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\scriptrunner\exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\scriptrunner\script_runner.py", line 689, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TRAE\信息订阅\web_app.py", line 1387, in <module>
+    main()
+    ~~~~^^
+  File "D:\TRAE\信息订阅\web_app.py", line 1383, in main
+    st.session_state.page_jump = st.session_state.current_page
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 532, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\state\session_state_proxy.py", line 136, in __setattr__
+    self[key] = value
+    ~~~~^^^^^
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 532, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\state\session_state_proxy.py", line 114, in __setitem__
+    get_session_state()[key] = value
+    ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\state\safe_session_state.py", line 109, in __setitem__
+    self._state[key] = value
+    ~~~~~~~~~~~^^^^^
+  File "D:\TRAE\信息订阅\.venv\Lib\site-packages\streamlit\runtime\state\session_state.py", line 591, in __setitem__
+    raise StreamlitAPIException(
+    ...<2 lines>...
+    )
+streamlit.errors.StreamlitAPIException: `st.session_state.page_jump` cannot be modified after the widget with key `page_jump` is instantiated.
+Exception in thread Thread-41 (_readerthread):
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 1615, in _readerthread
+    buffer.append(fh.read())
+                  ~~~~~~~^^
+  File "<frozen codecs>", line 325, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xa1 in position 334: invalid start byte

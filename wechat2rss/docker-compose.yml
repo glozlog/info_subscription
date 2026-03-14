@@ -1,0 +1,11 @@
+services:
+  wechat2rss:
+    container_name: wechat2rss
+    image: ttttmr/wechat2rss:latest
+    env_file:
+      - .env
+    volumes:
+      - ./data:/wechat2rss
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

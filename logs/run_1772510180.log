@@ -1,0 +1,28 @@
+Loading configuration...
+[2026-03-03 11:56:21] Starting update job (days_limit=0, target=量化投资邢不行啊)...
+Filtered subscriptions: 1/6 matched '量化投资邢不行啊'
+Fetching from 量化投资邢不行啊 (douyin)...
+Attempting fetch via RSSHub: http://localhost:1200/douyin/user/MS4wLjABAAAA9lwxwRIw3UpuTXj0_C3upyYDg74QysOH8w3yVdNCWv83EnQHyqEGMgtMdqSY2o4Q
+  - Fetched 20 items
+  - [Skip] Already in DB: 趋势之王or虚有其表？ A股均线知多少？ #量化投资 #理财 #A股 #股票 #掘金计划2026
+  - [Skip] Already in DB: 最牛反指、短线之王、空头的神？谁是A股最强K线？ #量化投资#理财 #炒股#股票 #掘金计划2026
+  - [Skip] Already in DB: 谁还在相信国运，定投纳指？A股其实比美股更赚钱？ #量化投资 #A股 #美股 #金融 #掘金计划2026
+  - [Skip] Already in DB: 实盘战绩全网第1?三位量化大师混战,谁的策略技高一筹? #量化投资 #金融 #炒股 #AI #掘金计划2026
+  - [Skip] Already in DB: 大A连续放量新高，历史上看后续怎么走？ #量化投资 #金融 #炒股 #理财 #掘金计划2025
+  - [Skip] Already in DB: A股17连阳过后，后续怎么走？ #量化投资 #金融 #A股 #编程 #掘金计划2026
+  - [Skip] Already in DB: 跟着主力混,3天饿9顿?纯干货,手把手教你魔改量化策略！ #量化投资 #金融 #炒股 #理财 #掘金计划2026
+  - [Skip] Already in DB: 跟着主力买,别墅靠大海?A股主力竟是我自己? #量化投资 #炒股 #理财 #编程 #掘金计划2026
+  - [Skip] Already in DB: A股熊市底在哪?还有多少人看涨?如何量化投资者情绪? #量化交易 #股票 #python #A股 #掘金计划2026
+  - [Skip] Already in DB: 用python找出200万次KDJ金叉,上涨概率是多少? #量化投资 #KDJ #编程 #炒股 #掘金计划2025
+  - [Skip] Already in DB: 大数据验证,76%胜率的抄底指标?量化大师就一定靠谱吗? #量化投资 #金融 #炒股 #理财 #掘金计划2025
+  - [Skip] Already in DB: 散户不屑一顾的冷门股，竟是A股最大金矿？ #量化投资 #金融 #炒股 #散户 #掘金计划2025
+  - [Skip] Already in DB: 100%预测大盘走势的情绪指标?大师的择时策略靠谱吗？ #量化投资 #金融 #炒股 #理财 #掘金计划2025
+  - [Skip] Already in DB: 低风险、高收益？可转债缘何走上神坛？网红可转债策略能赚钱吗? #量化投资 #金融 #炒股 #可转债 #掘金计划2025
+  - [Skip] Already in DB: 巴菲特的捡烟蒂策略还赚钱吗?股票估值越低越好吗? #量化投资 #炒股 #市盈率 #巴菲特 #掘金计划2025
+  - [Skip] Already in DB: 反常识！科研巨头扎堆夕阳行业？A股研发之王竟是它？ #量化投资 #金融 #炒股 #研发费用 #掘金计划2025
+  - [Skip] Already in DB: 涨知识了！2元垃圾股收益竟吊打2000的茅子？ #量化投资 #金融 #炒股 #茅台 #掘金计划2025
+  - [Skip] Already in DB: 抓了几千万条热门股数据，Python验证后发现结果竟然... #量化投资 #金融 #炒股 #编程 #掘金计划2025
+  - [Skip] Already in DB: 挑战每天买烂板股票，不仅没亏光还赚了 100 倍？ #量化 #炒股 #投资 #金融 #掘金计划2025
+  - [Skip] Already in DB: 跌停买入，稳赚不赔？全网爆火的跌停板战法靠谱吗？ #跌停板 #投资 #炒股 #量化 #掘金计划2025
+No new items fetched.
+[2026-03-03 11:56:46] Update job completed.

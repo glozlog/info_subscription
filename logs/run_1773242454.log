@@ -1,0 +1,206 @@
+Loading configuration...
+[2026-03-11 23:20:55] Starting update job (days_limit=0, target=None)...
+Fetching from 美投讲美股 (douyin)...
+Fetching https://www.douyin.com/user/MS4wLjABAAAAyvVEqOEIqpt9h1IU0fpvJzvVEPsABP6fN0jqNQy2ePI via Playwright (Source: 美投讲美股)...
+Launching persistent browser context from: D:\TRAE\信息订阅\browser_data\douyin
+Error processing subscription 美投讲美股: 'gbk' codec can't encode character '\ufffd' in position 3806: illegal multibyte sequence
+Fetching from 量化投资邢不行啊 (douyin)...
+Fetching https://www.douyin.com/user/MS4wLjABAAAA9lwxwRIw3UpuTXj0_C3upyYDg74QysOH8w3yVdNCWv83EnQHyqEGMgtMdqSY2o4Q via Playwright (Source: 量化投资邢不行啊)...
+Launching persistent browser context from: D:\TRAE\信息订阅\browser_data\douyin
+Error processing subscription 量化投资邢不行啊: 'gbk' codec can't encode character '\ufffd' in position 3827: illegal multibyte sequence
+Fetching from 风远94 (wechat2rss)...
+  - Fetched 20 items
+  - [Skip] Already in DB: 一条被市场短期忽视的产业大催化
+  - [Skip] Already in DB: 这里类似07年铜的底层资产是什么
+  - [Skip] Already in DB: 流动性惯性杀跌后如何看后续的方向
+  - [Skip] Already in DB: 深夜记录十年未有的感觉
+  - [Skip] Already in DB: Token的裂变与vibe coding的成瘾
+  - [Skip] Already in DB: Ai的通缩与繁荣-系列研讨会1
+  - [Skip] Already in DB: ai的文艺复兴时代
+  - [Skip] Already in DB: 拥抱ai native
+  - [Skip] Already in DB: 未来两年的ai投资的核心是围绕三个供给切换
+  - [Skip] Already in DB: token与云计算及应用的水位差带来的产业机会
+  - [Skip] Already in DB: moltbook会是人类历史上最大的社会学实验吗
+  - [Skip] Already in DB: Ai应用的故事刚刚开始
+  - [Skip] Already in DB: 应用繁荣的xx年？
+  - [Skip] Already in DB: ai应用机会详解
+  - [Skip] Already in DB: 硬件反应需求强共识——做好准备迎接ai os fomo
+  - [Skip] Already in DB: 分歧让世界更美好
+  - [Skip] Already in DB: 牛市的五浪极致风格
+  - [Skip] Already in DB: 当前最大的产业趋势预期差
+  - [Skip] Already in DB: 明年的ai主线
+  - [Skip] Already in DB: 下一阶段的ai叙事
+Fetching from 投资聚义厅 (wechat2rss)...
+  - Fetched 20 items
+  - Summarizing: 周度复盘特刊：止战之殇
+  - Summarizing: 周度复盘：再谈末日剧本与OpenAI
+  - Summarizing: Citadel报告：为什么Citrini的叙事是错的
+  - Summarizing: 单枪匹马，心有千军
+  - Summarizing: Robinhood：十年之后
+  - Summarizing: 上帝来做主动投资也会下岗
+  - Summarizing: 周度复盘：互斥的鬼故事
+  - Summarizing: The Bubble Era（上）
+  - Summarizing: 不是卖课
+  - Summarizing: 周度复盘：裙下之臣
+  - Summarizing: 周度复盘：树大招风
+  - Summarizing: 周度复盘：多动症的周期发作
+  - Summarizing: 2025年度信：轻舟已过万重山
+  - Summarizing: 周度复盘：数星星的圣诞节
+  - Summarizing: 周度复盘：葡萄成熟时
+  - Summarizing: 周度复盘：日本加息
+  - Summarizing: 周度复盘：你们一起上，我在赶时间
+  - Summarizing: NotebookLM的PPT功能
+  - Summarizing: 周度复盘：Last Dance
+  - Summarizing: 周度复盘：似是故人来
+Fetching from 思想钢印 (wechat2rss)...
+  - Fetched 20 items
+  - Summarizing: 震荡行情辛苦赚小钱，趋势行情做反亏大钱
+  - Summarizing: 泡泡玛特被做空后，我研究了5次经典做空，发现最像的是特斯拉
+  - Summarizing: 知识星球持续运营6年了！
+  - Summarizing: 看好的行业，价格涨太多了怎么办？（有问必答）
+  - Summarizing: 什么样的主题更容易形成市场共识？
+  - Summarizing: 如何把握“恐怖谷”带来的AI投资机会？
+  - Summarizing: 知识星球持续运营6年了！
+  - Summarizing: 美股会不会在积累一次暴跌？（有问有答）
+  - Summarizing: 买了个寂寞
+  - Summarizing: 储能赛道狭路相逢：如何分析制造业的商业模式？
+  - Summarizing: 知识星球持续运营6年了！
+  - Summarizing: 选股能力弱怎么办？
+  - Summarizing: 投资大师的重仓出击，为什么不能简单抄作业
+  - Summarizing: 消费长期下行周期，可能才刚刚开始
+  - Summarizing: 知识星球持续运营6年了！
+  - Summarizing: 美联储如果缩表，利好利空哪一类资产（有问有答）
+  - Summarizing: 软件股会跌出机会来吗？只有这三类
+  - Summarizing: 真正懂消费股投资的人，都在关注线下新机会
+  - Summarizing: 更重要的是在假象被公众认识之前退出
+  - Summarizing: 为什么监管不怕把“牛”摁死？
+Fetching from 荒原投资凌鹏的策略随笔 (wechat2rss)...
+  - Fetched 19 items
+  - [Skip] Already in DB: 光正确没用
+  - [Skip] Already in DB: 拓展自己的长坡厚雪
+  - [Skip] Already in DB: 收起胜心，在能力圈之下做事
+  - [Skip] Already in DB: 中石油和那个蓝筹时代
+  - [Skip] Already in DB: 大道甚夷 而人好径
+  - [Skip] Already in DB: 投资须在“事上磨”
+  - [Skip] Already in DB: 天下不可智取
+  - [Skip] Already in DB: 归零因子
+  - [Skip] Already in DB: 荒原实习生计划（第四期）
+  - [Skip] Already in DB: 新瓶旧酒和旧瓶新酒
+  - [Skip] Already in DB: 周期叠加偏见才创造出巨大机会
+  - [Skip] Already in DB: 旧时王谢今何在？
+  - [Skip] Already in DB: 市场先生做不到的事
+  - [Skip] Already in DB: 如果高增长都用来消化高估值，那你赚什么钱？
+  - [Skip] Already in DB: 商业模式和盈利能力
+  - [Skip] Already in DB: 君子固穷
+  - [Skip] Already in DB: 荒原招聘及人才储备计划
+  - [Skip] Already in DB: 企业说了不降价
+  - [Skip] Already in DB: 工作范式
+Fetching from 产品君 (douyin)...
+Fetching https://www.douyin.com/user/MS4wLjABAAAAVmG_pTXp3pvTEwF7Cm3te2-s_RDjXsCMf3n4sgs-63u-0xRsmvBdm6gj3rjNKaR- via Playwright (Source: 产品君)...
+Launching persistent browser context from: D:\TRAE\信息订阅\browser_data\douyin
+Navigating to https://www.douyin.com/user/MS4wLjABAAAAVmG_pTXp3pvTEwF7Cm3te2-s_RDjXsCMf3n4sgs-63u-0xRsmvBdm6gj3rjNKaR-...
+Found 54 potential items.
+  - Fetched 20 items
+  - [Skip] Already in DB: 产品君：抖音前沿科技30X30｜采访AI超级个体 Gemini 3发布后，这5个开发者给自己的人生装上了外挂。
+  - [Skip] Already in DB: 产品君：盘点一周AI大事(3月8日)｜龙虾开公司30天狂赚8万刀 工程师Nat Eliason开发出首个龙虾CEO「FelixCraftAI 」，全自主运营零人类公司，30天狂赚8万刀
+  - [Skip] Already in DB: 产品君：能跳舞会蹦迪！荣耀发布全球首个机器人手机
+  - [Skip] Already in DB: 产品君：盘点一周AI大事(3月1日)｜龙虾开车跑滴滴 工程师开发出首个能自主进化的龙虾Ouroboros
+  - [Skip] Already in DB: 产品君：盘点一周AI大事(2月22日)｜不赚钱拔网线，龙虾狂赚1万 工程师开源龙虾打工人ClawWork，10刀开局，7小时狂赚1万刀
+  - [Skip] Already in DB: 产品君：盘点一周AI大事(2月15日)｜王炸视频模型 字节正式上线最强视频模型「Seedance 2.0」
+  - [Skip] Already in DB: 产品君：实测即梦 Seedance 2.0，一键穿越进电影 Seedance 2.0真是强得离谱，上传个自拍就能穿越到爱乐之城电影里。
+  - [Skip] Already in DB: 产品君：工作群变办公系统，AI小钉拯救打工人 钉钉新上的群聊助手「AI小钉」太实用了
+  - [Skip] Already in DB: 产品君：盘点一周AI大事2月8日｜AI相亲、AI当老板、AI狼人杀 Anthropic发布最强大模型Claude Opus 4.6
+  - [Skip] Already in DB: 产品君：盘点一周AI大事(2月1日)｜AI乌托邦魔幻开局 Google上线世界模型Project Genie
+  - [Skip] Already in DB: 产品君：盘点一周AI大事(1月25日)｜Agent进化，24小时打工 开源视频制作Remotion Skills爆火
+  - [Skip] Already in DB: 产品君：实测用TRAE Skills接管工作流，打工人的自动化神器
+  - [Skip] Already in DB: 产品君：实测扣子视频Agent，一句话量产爆款，适合起号的工具来了
+  - [Skip] Already in DB: 产品君：盘点一周AI大事(1月18日)｜OpenAI上演无间道 苹果官宣牵手Google，Siri将由Gemini驱动
+  - [Skip] Already in DB: 产品君：盘点一周AI大事(1月11日)｜最强人形机器人 OpenAI公布2026研发路线图
+  - [Skip] Already in DB: 产品君：神仙救急也用闪购，美团的AI短片太会玩了！ 孙悟空用按摩仪？后羿射日先防晒？
+  - [Skip] Already in DB: 产品君：CES上英伟达再放王炸，AI史诗升级
+  - [Skip] Already in DB: 产品君：盘点一周AI大事(1月4日)｜Google包揽年度最佳模型 LMArena大模型盲选排行榜公布年度冠军
+  - [Skip] Already in DB: 产品君：2025年度AI全景报告：AI变强，人类抽象！ 2025年的AI进化史，比科幻电影更疯狂
+  - [Skip] Already in DB: 产品君：盘点一周AI大事(12月28日)｜最强开源大模型易主 智谱发布最强开源大模型GLM 4.7
+Fetching from 学院派Academia (douyin)...
+Fetching https://www.douyin.com/user/MS4wLjABAAAAB3Qx5iT-XPUp54-wBHTac06qDEKdyWUmKhcIwTIyS5Q25jt7CBoRK-OS-N1ha4Yk via Playwright (Source: 学院派Academia)...
+Launching persistent browser context from: D:\TRAE\信息订阅\browser_data\douyin
+Navigating to https://www.douyin.com/user/MS4wLjABAAAAB3Qx5iT-XPUp54-wBHTac06qDEKdyWUmKhcIwTIyS5Q25jt7CBoRK-OS-N1ha4Yk...
+Found 53 potential items.
+  - Fetched 20 items
+  - [Skip] Already in DB: 学院派Academia：我对谈了诺奖得主：人类科技树为何停滞万年，又为何突然起飞？ 很荣幸作为今年唯一一个中国采访者，与诺奖经济学得主乔尔·莫基尔（Joel Mokyr）进行了长达30分钟的深度对谈，并基于他的著作，写了两万字的学术解析视频。希望能为你一次讲清楚，人类科技树为何停滞万年、经济增长为何始终缓慢，却又为何被工业革命一次性扭转这一世界性难题。以及，更重要的，在人工智能肆虐的时代，我们是否会丢掉我们曾经所拥有的这一切——重回科技被锁死、经济不增长的黑暗时代。
+  - [Skip] Already in DB: 学院派Academia：1小时详解：投行已死，资管当立，资产管理公司如何统治美国？ 本期视频为中文世界首个用1个小时完整解析资管巨头崛起的学术视频，将从资产管理公司如何通过"被动投资"策略实现对全球资本市场的实质掌控，讲到过去百年的4次金融资本版本变迁。
+  - [Skip] Already in DB: 学院派Academia：大胆承认：中美对账就赢在社会主义制度 中美对账的胜利就是教员遗产和社会主义的胜利，而非改开市场经济的胜利。因为美国已经向我们证明了，只有市场经济，你会获得的到底是什么。在对账时，中国真正超越美国的并非科技实力或经济活力。恰恰相反，我们要大胆承认，现在的中国经济当然是改革开放以来最差的，也遇到了通缩这种从来没有遇到过的问题。但哪怕如此，我们仍然享受医疗、安全、教育、出行等等方面的制度性优势。是社会主义的胜利，而非是“经济更好”的胜利。
+  - [Skip] Already in DB: 学院派Academia：伊朗革命，为何走不出“民国困境”：中国如何成功、伊朗何以失败 20世纪有无数国家陷入半殖民地半封建的困局，立宪、民主、威权现代化、苏联模式、美国模式，全都试过，但真正走出来的只有秉持文人救国理念、百家争鸣传统以及马克思主义思想的新中国。伊朗就是最好的对照：它认真走完了民国的每一条路，结果全部失败。因为这些路有一个共同的盲点——没有触动土地问题，没有回答谁才是历史的主体。今天，巴基斯坦、苏丹、缅甸等南方国家仍然正在重演同一个剧本，而中国那段用血写成的历史，才是真正值得被讲述的历史攻略。
+  - [Skip] Already in DB: 学院派Academia：投行是怎么诞生的？投行之父JP摩根为何是现代美国真正的国父？ 华盛顿创建了政治美国，林肯统一了种族美国，但真正把美国变成资本主义机器的，是一个银行家、现代投行之父。他不竞选、不当官，却用全民存款吞并铁路、钢铁、电力，造出人类第一家十亿美元公司。1907年金融崩盘，财政部亲自上门求他救国。他死后一百年，华尔街依然在运行他写下的那套源代码。这个人叫JP摩根，这期50分钟的硬核超长视频，带你看懂他如何用资本重写一个国家的命运。
+  - [Skip] Already in DB: 学院派Academia：我的晚学博士论文被封了，晚奶大手还在发力。也是在晚奶制裁前跑到了 90 万播放
+  - [Skip] Already in DB: 学院派Academia：伊朗何以至此：出了蒋介石，没有毛泽东；反帝不反封，注定一场空 1941-1979年，伊朗曾有长达三十八年的、蒋介石式的美国傀儡政权巴列维，在歌舞升平的城市现代化之下，是农村人民无尽的苦难。但伊朗的农村却没有诞生毛泽东式的革命力量。直到1953年，美国策划的政变杀死了要国有化美国石油资产的进步派总理摩萨台、保护了傀儡国王巴列维，扼杀了伊朗最后的希望，直接导致1979年的霍梅尼，一个披着革命外衣的"清朝遗老"，窃取了全民革命果实，用现代极权手段建立神权复辟政权。反帝未能反封建，这是伊朗百年悲剧的根源，也是理解今日中东乱局的关键密码，更是明晰中国如今强大之不易的最好镜
+  - [Skip] Already in DB: 学院派Academia：春晚背后，是两个巨大的AI趋势正在会师 这个春节，Seedance 2.0 的视频生成AI已经逼真到专业人士看不出破绽，人形机器人已经稳定到敢上零容错的春晚舞台。这两条看似无关的技术路径，正在向同一个终点收敛——世界模型。这是图灵奖得主LeCun离开Meta、押上身家all in的东西，也是李飞飞、DeepMind、英伟达、字节共同下注的方向——理解这个概念，你对AI的未来会有真正的突破性洞见。
+  - [Skip] Already in DB: 学院派Academia：通用人工智能AGI，正如何成为一种新宗教？ 我在耶鲁写了一篇两万字的关于AI的智库报告，只想讨论一个AI问题：从负债累累的小镇做题家到世界首富马斯克，为何号称会“消灭工作”、“改变一切”的通用人工智能AGI成为了各阶级人群共同的信仰？AGI的机械降临真的能解决人类社会发展至今的一切问题吗？如果AGI带来的“大变革时刻”永远不会到来，幻灭后的人类将何去何从？
+  - [Skip] Already in DB: 学院派Academia：很遗憾，我们的世界正在2077化。我在6年前写赛博朋克2077那期百万播放视频的时候，绝对没有想到，2077的世界观里有几个重大的、时间线收束的历史时刻，我们在2026年都能找到对应事件：
+  - [Skip] Already in DB: 学院派Academia：40分钟：战争人性论的百年纷争史【抖音独家·战争社会学2】 战争，根植于你的本性；暴力，编码在你的DNA里；人类这个物种，从本质上讲，就是一个经过数百万年演化而成的“杀人猿”——我们都有着“自私的基因”。
+  - [Skip] Already in DB: 学院派Academia：在赛博朋克世界里，遵守劳动法要难于上月球 【游戏世界观解析、与现实无关】欢迎来到夜之城：为什么在游戏赛博朋克2077的虚拟世界观里，劳动法总是“失灵”？为什么即使科技高度发达、义体和脑机接口已经极其普遍，荒坂的32岁员工仍然会过劳死在沃森区？在“公司主义”时代，法律为什么确实是公平的，但这种公平毫无意义可言？
+  - [Skip] Already in DB: 学院派Academia：斩杀线或乌托邦？从老友记到无耻之徒，看美国如何反对美国 35分钟万字解析影视社会学——从老友记的乌托邦到无耻之徒的斩杀线，美剧里的两个美国如何自己反对自己？为什么说无耻之徒在15年前就描绘了斩杀线的真实存在？为什么老友记的生活虽然是“乌托邦”，但仍然值得我们追求？
+  - [Skip] Already in DB: 学院派Academia：当我获得了抖音年度精选后，我决定说说心里话…… 2025年是我个人生活剧烈变动、职业生涯突飞猛进的一年。我跨国搬家了三次，成为了耶鲁的研究员，出差去了八个不同的国家。也在抖音认识了各位新老朋友，新的一年——我要和你一起去看，更大的世界
+  - [Skip] Already in DB: 学院派Academia：我专访了诺奖得主并和他们勾肩搭背这件事。26 岁的最后一个月，我竟然作为唯一的中国采访者专访了诺奖经济学得主莫基尔 30 分钟，出场之后居然还偶遇另外一位得主阿吉翁聊了好久！感谢抖音知识的官方邀请，完整的采访和硬核学术解析视频（长达一小时）周末就会出啦，大家可以期待一下。带大家吃点真正的细糠！
+  - [Skip] Already in DB: 学院派Academia：戳穿许倬云、批判假大师：小资产阶级的反共师爷有何值得哀悼？ 许倬云，一个终生为蒋氏独裁涂脂抹粉、仇视新中国革命的“反共师爷”，竟能被港台资本背景的大陆媒体捧为所谓“最后一个国师”，实属可笑可悲！
+  - [Skip] Already in DB: 学院派Academia：一个马克思主义者，如何成为美国最危险的军工企业家？ 【45分钟、中文互联网独家前沿解析、彼得蒂尔的帝国宰相：卡普】
+  - [Skip] Already in DB: 学院派Academia：100分钟：带你读懂所有战争理论【抖音独家·战争社会学1】 本视频耗时9个月制作，时长100分钟，建议先收藏后看；全系列【战争社会学】共有10期，总长度1000分钟，将于每月在抖音独家更新。
+  - [Skip] Already in DB: 学院派Academia：经济殖民南美、量产廉价人矿：美国移民问题的本质 美国移民问题的本质，是美帝国在南美后花园长期主动制造经济难民，并故意设计“美国梦”和非法移民通道，将其变成在美国不敢反抗的“非法”人矿，供大资本无节制吸血。加州硅谷的科技繁荣、纽森家族的葡萄酒庄、MAGA党人的大农场，都建立在这群隐形人的血汗之上。移民问题的重点从来不是合法与否，甚至不是移民问题本身：而是美国系统性殖民和奴役了所有南美人民，剥夺了他们在本土的经济机会。
+  - [Skip] Already in DB: 学院派Academia：马斯克懂王决裂的底层逻辑：战锤式帝皇理想主义不兼容美国政治 在马斯克眼中，世界已经到了战锤40K式的终末时刻：互联网空间就是超越现实又影响现实的亚空间，政治正确的“觉醒病毒”就是纳垢的瘟疫和色孽的蛊惑，“政治正确”式的民主党就是四邪神。而X就是他的黄金王座，是利用亚空间力量（互联网力量）对抗混沌腐化的终极武器 。
+Fetching from 狐狸的观念 (douyin)...
+Fetching https://www.douyin.com/user/MS4wLjABAAAA25xxS-4HJ5PYicMjFpvzlYR_oe37SK-ryMNQZs-ilpdFNy7iaGBWl3cyQIsPirtB via Playwright (Source: 狐狸的观念)...
+Launching persistent browser context from: D:\TRAE\信息订阅\browser_data\douyin
+Navigating to https://www.douyin.com/user/MS4wLjABAAAA25xxS-4HJ5PYicMjFpvzlYR_oe37SK-ryMNQZs-ilpdFNy7iaGBWl3cyQIsPirtB...
+Found 57 potential items.
+  - Fetched 20 items
+  - [Skip] Already in DB: 狐狸的观念：所谓哲学，是一场危险的观念冒险 进狐狸的主页橱窗，一起思辨正义、公平、平等、自由......让头脑接受质询、让观念接受审视。
+  - [Skip] Already in DB: 狐狸的观念：集体利益是谁的利益？ 社会制度变化万千，只不过是一场精英统治的循环游戏。
+  - [Skip] Already in DB: 狐狸的观念：存在主义是什么？ 回溯存在主义之父，克尔凯郭尔
+  - [Skip] Already in DB: 狐狸的观念：白纸找白纸，报纸找报纸？
+  - [Skip] Already in DB: 狐狸的观念：男人对真爱，没有性冲动？
+  - [Skip] Already in DB: 狐狸的观念：酒吧博弈经济学
+  - [Skip] Already in DB: 狐狸的观念：一个人的XP，源自他的原生家庭？
+  - [Skip] Already in DB: 狐狸的观念：斩杀线有没有道德逻辑？
+  - [Skip] Already in DB: 狐狸的观念：为什么集体要反腐？测测你的政治思维
+  - [Skip] Already in DB: 狐狸的观念：18岁VS30岁，聊天还是上床？
+  - [Skip] Already in DB: 狐狸的观念：喜欢给伴侣找伴侣，什么心态？
+  - [Skip] Already in DB: 狐狸的观念：SM里能否发现爱情
+  - [Skip] Already in DB: 狐狸的观念：人，没法得到自己觉得不配的事物
+  - [Skip] Already in DB: 狐狸的观念：找个老实人嫁了吧，是一种怎样的心态？
+  - [Skip] Already in DB: 狐狸的观念：重复疼痛情感，源自过去的创伤？
+  - [Skip] Already in DB: 狐狸的观念：男人的中年危机？
+  - [Skip] Already in DB: 狐狸的观念：年轻女性的美貌幻觉，中年步入破灭
+  - [Skip] Already in DB: 狐狸的观念：为什么优秀的上位者那么少？
+  - [Skip] Already in DB: 狐狸的观念：男人远比女人，自卑敏感
+  - [Skip] Already in DB: 狐狸的观念：教你诚实正直，却难容于世界
+Fetching from IC实验室馆长 (douyin)...
+Fetching https://www.douyin.com/user/MS4wLjABAAAAoXm3UTY6L_aOBfJxd0Y8B9ojQS4rUUWwDK-iEre3opQ via Playwright (Source: IC实验室馆长)...
+Launching persistent browser context from: D:\TRAE\信息订阅\browser_data\douyin
+Navigating to https://www.douyin.com/user/MS4wLjABAAAAoXm3UTY6L_aOBfJxd0Y8B9ojQS4rUUWwDK-iEre3opQ...
+Found 54 potential items.
+  - Fetched 20 items
+  - [Skip] Already in DB: IC实验室馆长：刘文祥爆火背后，不只是“紫薯精”的功劳
+  - [Skip] Already in DB: IC实验室馆长：排队15小时，烤匠爆红真相
+  - [Skip] Already in DB: IC实验室馆长：桃李面包，网红烘焙的噩梦
+  - [Skip] Already in DB: IC实验室馆长：跟着瑞幸买联名的人，堪比四百块买黄金的那批人
+  - [Skip] Already in DB: IC实验室馆长：自嗨锅大败局：明星捧红，资本奶大，市场抛弃
+  - [Skip] Already in DB: IC实验室馆长：苹果味饮品为何突然爆发？
+  - [Skip] Already in DB: IC实验室馆长：春晚小品四十年兴衰史：从全民热梗到尴尬说教
+  - [Skip] Already in DB: IC实验室馆长：耐克如何一步步失去中国市场？
+  - [Skip] Already in DB: IC实验室馆长：买老铺黄金奢侈品，别装硬通货
+  - [Skip] Already in DB: IC实验室馆长：精致上海背后，是什么在撑腰？
+  - [Skip] Already in DB: IC实验室馆长：15秒爆火杀死版权音乐，华语音乐的尽头，是抖音AI神曲？
+  - [Skip] Already in DB: IC实验室馆长：曾卖爆1000万台，豆浆机为何突然消失？
+  - [Skip] Already in DB: IC实验室馆长：预制菜网红店开不下去了，太二酸菜鱼改名自救
+  - [Skip] Already in DB: IC实验室馆长：中国新能源大逆袭，合资车企如何翻身？
+  - [Skip] Already in DB: IC实验室馆长：华熙vs巨子年度商战，玻尿酸大战胶原蛋白
+  - [Skip] Already in DB: IC实验室馆长：谁才是冰雪运动第一大国？
+  - [Skip] Already in DB: IC实验室馆长：人均40吃到撑，贵州餐饮爆火真相
+  - [Skip] Already in DB: IC实验室馆长：10万开发，月入4亿：粗糙的小游戏凭啥赚大钱？
+  - [Skip] Already in DB: IC实验室馆长：活着回来就算赢！骆驼杯到底多狠？
+  - [Skip] Already in DB: IC实验室馆长：与日本东丽赛跑：中国山西碳纤维的翻身仗
+Generating daily report for NEW items...
+JSON data saved to archives\daily_report_2026-03-11.json
+Markdown report saved to archives\daily_report_2026-03-11.md
+HTML report saved to archives\daily_report_2026-03-11.html
+[2026-03-11 23:29:50] Update job completed.
