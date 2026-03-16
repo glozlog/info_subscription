@@ -5,7 +5,7 @@ output:
   format: markdown
 scheduler:
   times:
-  - '07:00'
+  - 07:00
 subscriptions:
 - category: 金融
   name: 美投讲美股
@@ -47,6 +47,10 @@ subscriptions:
   name: IC实验室馆长
   platform: douyin
   url: https://www.douyin.com/user/MS4wLjABAAAAoXm3UTY6L_aOBfJxd0Y8B9ojQS4rUUWwDK-iEre3opQ
+- category: 金融
+  name: 量化李不白
+  platform: douyin
+  url: https://www.douyin.com/user/MS4wLjABAAAAN15tWix0L3i7TR-kXwjgGQ4iX3jaZd5r74Pv9HWgAJvCP2mAAF2unt7qAEPtLfuu
 summarizer:
   api_key: sk-7a2537a586f34ab98b55f99bc1430c7e
   model: qwen-plus

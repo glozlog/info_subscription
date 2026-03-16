@@ -3,6 +3,7 @@ import pandas as pd
 import json
 import os
 from datetime import datetime
+from collections import Counter
 import glob
 import subprocess
 import time
@@ -15,6 +16,7 @@ import feedparser
 import requests
 from bs4 import BeautifulSoup # Restored for clean_html
 from src.database import DatabaseManager # Import DatabaseManager
+from src.concurrency import ConcurrencyManager # Import ConcurrencyManager for batch fetching
 # from src.summarizer.llm_summarizer import OpenAISummarizer # Removed to avoid import errors in Streamlit
 
 # Set page config
@@ -186,35 +188,23 @@ def load_global_stats():
     try:
         db = DatabaseManager()
         
-        # 1. Total articles
-        total_count = db.count_articles()
+        # 1. Total articles - 使用带缓存的 count
+        total_count = db.count_articles(use_cache=True, cache_ttl=60)
         
         # 2. Today's count
         today_str = datetime.now().strftime('%Y-%m-%d')
         today_articles = db.get_articles_by_date(today_str)
         today_count = len(today_articles)
         
-        # 3. Unique authors/sources
-        # We need a custom query for this as DatabaseManager doesn't have it exposed directly
-        # But we can cheat a bit: get_all_articles(limit=10000) might be heavy just for stats.
-        # Let's add a lightweight method to DatabaseManager or do a raw query here if needed.
-        # For now, let's use a raw query pattern if we can, or just accept a bit of overhead.
-        # Actually, let's extend DatabaseManager in a separate step or use what we have.
-        # Since we can't easily modify DatabaseManager in this tool call block without context switching,
-        # let's try to be efficient.
+        # 3. Unique authors/sources - 使用带缓存的 count
+        author_count = db.get_author_count(use_cache=True, cache_ttl=60)
         
-        # We'll use a direct sqlite connection for stats to be fast
+        # Get author distribution for the expander
         import sqlite3
         conn = sqlite3.connect(db.db_path)
         cursor = conn.cursor()
-        
-        cursor.execute("SELECT COUNT(DISTINCT author) FROM articles")
-        author_count = cursor.fetchone()[0]
-        
-        # Get author distribution for the expander
         cursor.execute("SELECT author, platform, category, COUNT(*) as c FROM articles GROUP BY author ORDER BY c DESC")
         author_stats = [{"author": r[0], "platform": r[1], "category": r[2], "count": r[3]} for r in cursor.fetchall()]
-        
         conn.close()
         
         return {
@@ -232,105 +222,35 @@ def load_global_stats():
 def load_data(limit=30, offset=0, filters=None):
     """
     Load articles from SQLite database with server-side filtering and pagination.
+    使用优化的 get_articles_paginated 方法，利用 SQL 索引排序。
+    
     filters: dict with keys 'date', 'platforms', 'categories', 'authors'
     """
     try:
         db = DatabaseManager()
-        import sqlite3
         
-        query = "SELECT * FROM articles WHERE 1=1"
-        params = []
+        # 使用优化后的分页查询方法（利用 publish_date 索引）
+        result = db.get_articles_paginated(
+            limit=limit,
+            offset=offset,
+            filters=filters
+        )
         
-        if filters:
-            # Date Filter
-            if filters.get('date') and filters['date'] != "全部":
-                # Assuming publish_date is stored as string in consistent format or we use LIKE
-                # Actually, our dates are messy. Let's filter in memory for date if needed, 
-                # OR better: try to match standard format YYYY-MM-DD
-                # Since we can't easily fix DB now, let's skip SQL date filter for "messy" data
-                # But for performance, we should really index and standardise dates.
-                # For now, let's apply text match if it matches YYYY-MM-DD
-                pass 
-                
-            # Platform Filter
-            if filters.get('platforms'):
-                placeholders = ','.join(['?'] * len(filters['platforms']))
-                query += f" AND platform IN ({placeholders})"
-                params.extend(filters['platforms'])
-                
-            # Category Filter
-            if filters.get('categories'):
-                placeholders = ','.join(['?'] * len(filters['categories']))
-                query += f" AND category IN ({placeholders})"
-                params.extend(filters['categories'])
-                
-            # Author Filter (New)
-            if filters.get('authors'):
-                placeholders = ','.join(['?'] * len(filters['authors']))
-                query += f" AND author IN ({placeholders})"
-                params.extend(filters['authors'])
-
-        # We need to fetch ALL matching rows to sort by date in Python (because DB dates are mixed format)
-        # This is a compromise. Ideally we migrate DB to proper datetime.
-        # To avoid OOM, let's limit to recent 2000 items for sorting?
-        # Or just fetch all metadata (no content) to sort, then fetch content for the page.
+        articles = result['articles']
+        total_items = result['total']
         
-        # Optimization: Fetch metadata only
-        meta_query = query.replace("SELECT *", "SELECT url, title, subtitle, author, platform, category, publish_date, summary, video_url")
-        
-        conn = sqlite3.connect(db.db_path)
-        conn.row_factory = sqlite3.Row
-        cursor = conn.cursor()
-        cursor.execute(meta_query, params)
-        rows = cursor.fetchall()
-        conn.close()
-        
-        if not rows:
+        if not articles:
             return pd.DataFrame(), 0
-            
-        # Convert to DF
-        df = pd.DataFrame([dict(row) for row in rows])
         
-        # Parse Dates
-        def parse_date(x):
-            s = "" if x is None else str(x).strip()
-            if not s:
-                return pd.NaT
-            try:
-                has_tz = bool(re.search(r'(Z|[+-]\d{2}:?\d{2}|GMT|UTC)\s*$', s, re.IGNORECASE))
-                if has_tz:
-                    ts = pd.to_datetime(s, errors="coerce", utc=True)
-                    if pd.isna(ts):
-                        return pd.NaT
-                    return ts.tz_convert("Asia/Shanghai").tz_localize(None)
-
-                ts = pd.to_datetime(s, errors="coerce")
-                if pd.isna(ts):
-                    return pd.NaT
-                return ts.tz_localize("Asia/Shanghai").tz_localize(None)
-            except Exception:
-                return pd.NaT
-
-        df['sort_date'] = df['publish_date'].apply(parse_date)
+        # 转换为 DataFrame
+        df = pd.DataFrame(articles)
+        
+        # 添加用于显示的日期列（已经是标准化格式）
+        df['sort_date'] = pd.to_datetime(df['publish_date'], errors='coerce')
         df['report_date'] = df['sort_date'].dt.strftime('%Y-%m-%d')
         df['report_date_dt'] = df['sort_date']
         
-        # Apply Date Filter (In Memory, accurately)
-        if filters and filters.get('date') and filters['date'] != "全部":
-             target_date = pd.to_datetime(filters['date']).date()
-             df = df[df['report_date_dt'].dt.date == target_date]
-        
-        # Deduplicate (keep latest)
-        df = df.sort_values('sort_date', ascending=False).drop_duplicates(subset=['url'], keep='first')
-        
-        total_items = len(df)
-        
-        # Pagination
-        start = offset
-        end = offset + limit
-        paged_df = df.iloc[start:end]
-        
-        return paged_df, total_items
+        return df, total_items
         
     except Exception as e:
         st.error(f"Error loading data from database: {e}")
@@ -380,6 +300,9 @@ def format_date(date_obj):
         return ""
     # Check if it's a pandas Timestamp or datetime
     try:
+        # 如果时间是 00:00:00，只显示日期部分
+        if hasattr(date_obj, 'hour') and date_obj.hour == 0 and date_obj.minute == 0:
+            return date_obj.strftime('%Y-%m-%d')
         return date_obj.strftime('%Y-%m-%d %H:%M')
     except:
         return str(date_obj)
@@ -587,6 +510,7 @@ def regenerate_summary(url, content, video_url=None):
         return f"Error executing regeneration script: {e}"
 
 def fetch_content_via_playwright(url):
+    """单篇文章抓取（兼容旧接口）"""
     try:
         data = {"url": url}
         json_input = json.dumps(data, ensure_ascii=False)
@@ -605,7 +529,11 @@ def fetch_content_via_playwright(url):
         stdout, stderr = process.communicate(input=json_input)
         if process.returncode == 0:
             try:
-                return json.loads(stdout.strip()) if stdout else {"content": ""}
+                result = json.loads(stdout.strip()) if stdout else {"content": ""}
+                # 兼容新旧接口格式
+                if result.get("mode") == "single":
+                    return result.get("result", {})
+                return result
             except:
                 return {"error": "解析失败"}
         else:
@@ -613,6 +541,103 @@ def fetch_content_via_playwright(url):
             return {"error": msg}
     except Exception as e:
         return {"error": str(e)}
+
+
+def fetch_contents_batch_via_playwright(urls: list) -> dict:
+    """
+    批量抓取文章内容 - 使用 ConcurrencyManager 控制并发
+    
+    Args:
+        urls: 文章URL列表
+        
+    Returns:
+        {
+            'results': [{'url': '...', 'title': '...', 'content': '...', 'success': True}, ...],
+            'stats': {'total': N, 'success': N, 'failed': N}
+        }
+    """
+    if not urls:
+        return {'results': [], 'stats': {'total': 0, 'success': 0, 'failed': 0}}
+    
+    python_exe = _python_executable()
+    creationflags = subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0
+    
+    # 将URL列表分批，每批最多5个（在单个进程中复用浏览器）
+    batch_size = 5
+    url_batches = [urls[i:i + batch_size] for i in range(0, len(urls), batch_size)]
+    
+    def fetch_batch(batch_urls: list) -> list:
+        """抓取一批URL"""
+        try:
+            data = {"urls": batch_urls}
+            json_input = json.dumps(data, ensure_ascii=False)
+            
+            process = subprocess.Popen(
+                [python_exe, "fetch_wechat_playwright.py"],
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                encoding='utf-8',
+                creationflags=creationflags
+            )
+            
+            stdout, stderr = process.communicate(input=json_input, timeout=120)
+            
+            if process.returncode == 0:
+                result = json.loads(stdout.strip()) if stdout else {}
+                return result.get("results", [])
+            else:
+                # 返回所有失败的标记
+                return [{'url': url, 'success': False, 'error': stderr.strip()} for url in batch_urls]
+        except subprocess.TimeoutExpired:
+            process.kill()
+            return [{'url': url, 'success': False, 'error': 'Timeout'} for url in batch_urls]
+        except Exception as e:
+            return [{'url': url, 'success': False, 'error': str(e)} for url in batch_urls]
+    
+    all_results = []
+    
+    # 使用 ConcurrencyManager 控制并发（最多3个浏览器实例同时运行）
+    with ConcurrencyManager(
+        fetcher_workers=3,      # 最多3个并发进程
+        summarizer_workers=1,   # 不需要摘要功能
+        max_browsers=3,         # 最多3个浏览器实例
+        use_backpressure=True   # 启用背压控制
+    ) as cm:
+        
+        def wrapped_fetch(batch):
+            """包装抓取函数，获取浏览器资源许可"""
+            if not cm.browser_limiter.acquire(timeout=60):
+                raise TimeoutError("Browser resource timeout")
+            try:
+                return fetch_batch(batch)
+            finally:
+                cm.browser_limiter.release()
+        
+        # 并行处理所有批次
+        result = cm.fetcher_backpressure.map_with_backpressure(
+            wrapped_fetch,
+            url_batches,
+            on_result=lambda batch, res: all_results.extend(res),
+            on_error=lambda batch, err: all_results.extend(
+                [{'url': url, 'success': False, 'error': str(err)} for url in batch]
+            )
+        )
+    
+    # 统计结果
+    success_count = sum(1 for r in all_results if r.get('success'))
+    failed_count = len(all_results) - success_count
+    
+    return {
+        'results': all_results,
+        'stats': {
+            'total': len(urls),
+            'success': success_count,
+            'failed': failed_count,
+            'batches': len(url_batches)
+        }
+    }
 
 def regenerate_all_summaries_and_archives():
     try:
@@ -843,11 +868,31 @@ def main():
 
     # 2.3 选定源抓取 (Selected Source) - Priority 4
     with st.sidebar.expander("🎯 选定源抓取", expanded=False):
-        # Load author/source list
+        # Load author/source list from both DB and config
         stats = load_global_stats()
-        sources = [s['author'] for s in stats['author_stats']]
+        db_sources = [s['author'] for s in stats['author_stats']]
         
-        selected_source = st.selectbox("选择要抓取的订阅源", options=sources)
+        # Also load sources from config (including newly added ones)
+        config_sources = []
+        try:
+            loader = ConfigLoader()
+            config = loader.load()
+            if config:
+                for sub in config.get('subscriptions', []):
+                    name = sub.get('name')
+                    if name and name not in db_sources:
+                        config_sources.append(name)
+        except:
+            pass
+        
+        # Combine: DB sources first, then config-only sources (marked as NEW)
+        sources = db_sources + [f"{s} (NEW)" for s in config_sources]
+        
+        selected_source = st.selectbox("选择要抓取的订阅源", options=sources if sources else ["无可用订阅源"])
+        
+        # Strip the (NEW) marker if present
+        if selected_source and " (NEW)" in selected_source:
+            selected_source = selected_source.replace(" (NEW)", "")
         fetch_mode = st.radio("抓取模式", ["近20条 (深度)", "近3天 (快速)"])
         
         if st.button("🚀 开始抓取该源"):
@@ -964,6 +1009,15 @@ def main():
                         st.code(out)
                 load_data.clear()
                 st.rerun()
+        
+        st.divider()
+        st.markdown("#### 🧭 批量抓取正文")
+        st.caption("对当前筛选结果中的微信/RSS文章批量抓取正文（最多50篇）")
+        
+        # 批量抓取需要的数据在 main() 函数中处理，这里添加占位按钮
+        if st.button("🚀 批量抓取正文（当前筛选）", key="btn_batch_fetch_sidebar"):
+            st.session_state['trigger_batch_fetch'] = True
+            st.rerun()
 
     # Load Global Stats (Independent of pagination)
     global_stats = load_global_stats()
@@ -972,42 +1026,16 @@ def main():
     st.sidebar.header("🔍 全局筛选")
     
     # 1. Date Filter
-    # We need to get available dates. Since load_data is now filtered, we might need a separate query for dates 
-    # or cache distinct dates globally. For now, let's use global_stats if we can add dates there, 
-    # or just query DB for distinct dates once.
-    # A simple way: use today + past 30 days as options, or fetch distinct dates from DB.
-    # Let's fetch distinct dates for the dropdown.
+    # 使用优化后的 get_available_dates 方法（限制90天范围，利用索引）
     @st.cache_data(ttl=600)
-    def get_available_dates():
+    def get_available_dates_cached():
         try:
             db = DatabaseManager()
-            # This is heavy if dates are dirty. Let's assume we can get them.
-            # Actually, let's just show "Last 7 Days" options + "All" to save perf?
-            # Or query DB raw.
-            import sqlite3
-            conn = sqlite3.connect(db.db_path)
-            cursor = conn.cursor()
-            cursor.execute("SELECT DISTINCT publish_date FROM articles") # This is raw string
-            dates = set()
-            for r in cursor.fetchall():
-                d_str = r[0]
-                # Try to parse
-                try:
-                    # Quick parse hack
-                    if len(d_str) >= 10:
-                        # Check YYYY-MM-DD
-                        if re.match(r'\d{4}-\d{2}-\d{2}', d_str):
-                            dates.add(d_str[:10])
-                        else:
-                             # Try parsing
-                             pass
-                except: pass
-            conn.close()
-            return sorted(list(dates), reverse=True)
+            return db.get_available_dates(days=90)
         except:
             return []
 
-    available_dates = get_available_dates()
+    available_dates = get_available_dates_cached()
     # Add "Today" explicitly if missing? No, rely on DB.
     
     selected_date = st.sidebar.selectbox(
@@ -1034,8 +1062,27 @@ def main():
     )
     
     # 4. Source/Author Filter (New)
-    # Sort authors by count desc
-    all_authors = sorted(list(set([s['author'] for s in global_stats['author_stats']])), key=lambda x: next((s['count'] for s in global_stats['author_stats'] if s['author'] == x), 0), reverse=True)
+    # 使用Counter优化：从O(n^2)降到O(n log n)
+    author_counter = Counter(s['author'] for s in global_stats['author_stats'])
+    # most_common()返回按计数降序排列的列表
+    db_authors = [author for author, _ in author_counter.most_common()]
+    
+    # Also load sources from config (including newly added ones not yet fetched)
+    config_authors = []
+    try:
+        loader = ConfigLoader()
+        config = loader.load()
+        if config:
+            for sub in config.get('subscriptions', []):
+                name = sub.get('name')
+                if name and name not in db_authors:
+                    config_authors.append(name)
+    except:
+        pass
+    
+    # Combine: DB authors first, then config-only authors
+    all_authors = db_authors + config_authors
+    
     selected_authors = st.sidebar.multiselect(
         "👤 订阅源", 
         options=all_authors,
@@ -1121,11 +1168,6 @@ def main():
     
     if total_items == 0:
         st.info("👋 没有找到符合条件的文章。")
-    else:
-        if "page_jump" not in st.session_state:
-            st.session_state.page_jump = page
-        if st.session_state.page_jump < 1 or st.session_state.page_jump > num_pages:
-            st.session_state.page_jump = page
 
     # Main Content
     if selected_date == "全部":
@@ -1185,7 +1227,76 @@ def main():
                         st.error("失败")
 
     st.markdown("---")
-
+    
+    # --- BATCH FETCH CONTENT HANDLER ---
+    # 处理批量抓取正文的触发
+    if st.session_state.get('trigger_batch_fetch', False):
+        st.session_state['trigger_batch_fetch'] = False
+        
+        # 获取当前筛选条件下所有文章（不只是当前页）
+        with st.spinner("正在准备批量抓取..."):
+            # 加载所有符合条件的文章（限制最多50篇）
+            all_df, _ = load_data(limit=50, offset=0, filters=filters)
+            
+            # 筛选出 wechat/rss 平台且内容为空或较短的文章
+            articles_to_fetch = []
+            for _, row in all_df.iterrows():
+                if row.get('platform') in ['wechat', 'rss']:
+                    content = row.get('content', '') or ''
+                    if len(content) < 100:  # 内容较短才需要抓取
+                        articles_to_fetch.append({
+                            'url': row.get('url'),
+                            'title': row.get('title'),
+                            'index': row.name
+                        })
+            
+            if not articles_to_fetch:
+                st.info("✅ 当前筛选条件下没有需要抓取正文的文章")
+            else:
+                urls = [a['url'] for a in articles_to_fetch]
+                st.info(f"🚀 开始批量抓取 {len(urls)} 篇文章的正文（最多3个浏览器并发）...")
+                
+                progress_bar = st.progress(0)
+                status_text = st.empty()
+                
+                # 执行批量抓取
+                start_time = time.time()
+                result = fetch_contents_batch_via_playwright(urls)
+                elapsed = time.time() - start_time
+                
+                # 更新数据库
+                db = DatabaseManager()
+                updated_count = 0
+                failed_updates = []
+                
+                for item in result['results']:
+                    if item.get('success') and item.get('content'):
+                        try:
+                            db.update_content(item['url'], item['content'])
+                            updated_count += 1
+                        except Exception as e:
+                            failed_updates.append((item['url'], str(e)))
+                
+                progress_bar.empty()
+                status_text.empty()
+                
+                # 显示结果
+                col_stats1, col_stats2, col_stats3 = st.columns(3)
+                col_stats1.metric("总计", result['stats']['total'])
+                col_stats2.metric("成功", result['stats']['success'], delta=f"{result['stats']['success'] - result['stats']['total']}")
+                col_stats3.metric("失败", result['stats']['failed'])
+                
+                st.success(f"✅ 批量抓取完成！耗时 {elapsed:.1f} 秒，成功更新 {updated_count} 篇文章")
+                
+                if failed_updates:
+                    with st.expander(f"查看 {len(failed_updates)} 个数据库更新失败"):
+                        for url, err in failed_updates[:10]:
+                            st.caption(f"- {url[:60]}...: {err}")
+                
+                # 刷新数据
+                load_data.clear()
+                st.rerun()
+    
     # Display Items
     for index, row in df.iterrows():
         with st.container(border=True):
@@ -1357,7 +1468,6 @@ def main():
         with col_pg1:
             if st.button("⬅️ 上一页", disabled=page == 1, key="btn_page_prev_bottom"):
                 st.session_state.current_page -= 1
-                st.session_state.page_jump = st.session_state.current_page
                 st.rerun()
         with col_pg2:
             st.markdown(
@@ -1365,22 +1475,22 @@ def main():
                 unsafe_allow_html=True,
             )
         with col_pg3:
-            st.number_input(
+            # 使用单独的 key 存储跳转输入值，避免与 widget 冲突
+            jump_page = st.number_input(
                 "跳转到页",
                 min_value=1,
                 max_value=num_pages,
-                value=int(st.session_state.page_jump),
+                value=page,
                 step=1,
-                key="page_jump",
+                key="page_jump_input",
             )
         with col_pg4:
             if st.button("跳转", key="btn_page_jump"):
-                st.session_state.current_page = int(st.session_state.page_jump)
+                st.session_state.current_page = int(jump_page)
                 st.rerun()
         with col_pg5:
             if st.button("下一页 ➡️", disabled=page == num_pages, key="btn_page_next_bottom"):
                 st.session_state.current_page += 1
-                st.session_state.page_jump = st.session_state.current_page
                 st.rerun()
 
 if __name__ == "__main__":

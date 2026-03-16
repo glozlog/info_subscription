@@ -21,17 +21,24 @@ class DouyinFetcher(BaseFetcher):
     def validate_url(self, url: str) -> bool:
         return "douyin.com" in url
 
-    def fetch(self, url: str, source_name: str = None) -> List[Dict[str, Any]]:
+    def fetch(self, url: str, limit: int = 20, days_limit: int = 0, source_name: str = None) -> List[Dict[str, Any]]:
         """
         Fetch latest videos from a Douyin user profile.
+        
+        Args:
+            url: Douyin user profile URL
+            limit: Maximum number of items to fetch (default 20)
+            days_limit: If > 0, only fetch items within last N days (default 0)
+            source_name: Optional source name for logging
         """
-        print(f"Fetching {url} via Playwright (Source: {source_name})...")
-        return self._fetch_playwright(url, source_name)
+        print(f"Fetching {url} via Playwright (Source: {source_name}, limit={limit}, days_limit={days_limit})...")
+        return self._fetch_playwright(url, source_name, limit, days_limit)
 
     def _extract_date_from_id(self, vid: str) -> str:
         """
         Extract publish date from Douyin Aweme ID (Snowflake ID).
         High 32 bits of the ID represent the timestamp (seconds since epoch).
+        Returns datetime in format: YYYY-MM-DD HH:MM:SS
         """
         if not vid or not vid.isdigit():
             return ""
@@ -45,7 +52,7 @@ class DouyinFetcher(BaseFetcher):
             now = datetime.datetime.now()
             
             if 2016 < dt_object.year <= now.year + 1:
-                return dt_object.strftime("%Y-%m-%d")
+                return dt_object.strftime("%Y-%m-%d %H:%M:%S")
         except:
             pass
         return ""
@@ -115,10 +122,16 @@ class DouyinFetcher(BaseFetcher):
             pass
         return ""
 
-    def _fetch_playwright(self, url, source_name=None):
+    def _fetch_playwright(self, url, source_name=None, limit: int = 20, days_limit: int = 0):
         """
         Fetch data using Playwright with PERSISTENT CONTEXT.
         This allows reusing cookies/session to mimic a real user and potentially bypass login walls.
+        
+        Args:
+            url: Douyin user profile URL
+            source_name: Optional source name for logging
+            limit: Maximum number of items to fetch
+            days_limit: If > 0, only fetch items within last N days
         """
         results = []
         # Use absolute path relative to project root for browser data
@@ -186,10 +199,51 @@ class DouyinFetcher(BaseFetcher):
                     if extracted_nickname:
                         print(f"Extracted nickname: {extracted_nickname}")
 
-                # Scroll to load content - increased for better coverage
-                for _ in range(5):
+                # Scroll to load content with date-aware termination
+                # If days_limit is set, stop scrolling when we see old content
+                cutoff_date = None
+                if days_limit > 0:
+                    cutoff_date = datetime.datetime.now() - datetime.timedelta(days=days_limit)
+                    print(f"Date filter: only fetching items after {cutoff_date.date()}")
+                
+                max_scroll_attempts = 10 if days_limit > 0 else 5
+                consecutive_old_items = 0
+                
+                for scroll_round in range(max_scroll_attempts):
                     page.evaluate("window.scrollBy(0, 800)")
-                    time.sleep(1.5) # Slightly slower scroll to mimic human
+                    time.sleep(1.5)
+                    
+                    # Check if we should stop scrolling (date-based)
+                    if days_limit > 0 and scroll_round >= 2:  # Check after initial scrolls
+                        # Quick check: get last visible item's date
+                        temp_list = page.query_selector('div[data-e2e="user-post-list"]')
+                        if temp_list:
+                            temp_items = temp_list.query_selector_all('li') or temp_list.query_selector_all(':scope > div')
+                            if len(temp_items) > 0:
+                                # Check last few items
+                                recent_items_checked = 0
+                                old_items_in_check = 0
+                                
+                                for temp_item in temp_items[-3:]:  # Check last 3 items
+                                    temp_link = temp_item.query_selector('a[href*="/video/"], a[href*="/note/"]')
+                                    if temp_link:
+                                        temp_href = temp_link.get_attribute("href") or ""
+                                        temp_vid_match = re.search(r'(?:video|note|article)/(\d+)|modal_id=(\d+)', temp_href)
+                                        temp_vid = temp_vid_match.group(1) or temp_vid_match.group(2) if temp_vid_match else ""
+                                        if temp_vid:
+                                            temp_date_str = self._extract_date_from_id(temp_vid)
+                                            if temp_date_str:
+                                                try:
+                                                    temp_date = datetime.datetime.strptime(temp_date_str, "%Y-%m-%d")
+                                                    if temp_date < cutoff_date:
+                                                        old_items_in_check += 1
+                                                except:
+                                                    pass
+                                
+                                # If all checked items are old, we can stop scrolling
+                                if old_items_in_check >= 2:
+                                    print(f"  Stopping scroll at round {scroll_round + 1}: found old content")
+                                    break
                 
                 # Extract items
                 main_list = page.query_selector('div[data-e2e="user-post-list"]')
@@ -204,7 +258,7 @@ class DouyinFetcher(BaseFetcher):
                     print(f"Found {len(list_items)} potential items.")
                     
                     for item in list_items:
-                        if len(fetched_items) >= 20: break
+                        if len(fetched_items) >= limit: break
                         
                         # Find link
                         link = item.query_selector('a[href*="/video/"], a[href*="/note/"], a[href*="/article/"], a[href*="modal_id="]')
@@ -268,30 +322,48 @@ class DouyinFetcher(BaseFetcher):
                         # Strategy 2: Text-based (Fallback or if ID fails)
                         if not publish_date:
                             card_text = item.inner_text()
+                            now = datetime.datetime.now()
                             # Specific Date format: (3月1日)
                             date_match = re.search(r'[(\uff08](\d{1,2})[月\.\-](\d{1,2})[日\) \uff09]', title)
                             if date_match:
                                 month, day = int(date_match.group(1)), int(date_match.group(2))
-                                now = datetime.datetime.now()
                                 year = now.year
                                 if datetime.datetime(year, month, day) > now + datetime.timedelta(days=1):
                                     year -= 1
-                                publish_date = f"{year}-{month:02d}-{day:02d}"
+                                # Use noon (12:00:00) as default time for date-only sources
+                                publish_date = f"{year}-{month:02d}-{day:02d} 12:00:00"
                             
                             # Relative Time
                             elif "昨天" in card_text:
-                                publish_date = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+                                yesterday = now - datetime.timedelta(days=1)
+                                publish_date = yesterday.strftime("%Y-%m-%d 12:00:00")
                             elif "刚刚" in card_text or "小时前" in card_text or "分钟前" in card_text:
-                                publish_date = datetime.datetime.now().strftime("%Y-%m-%d")
+                                publish_date = now.strftime("%Y-%m-%d %H:%M:%S")
                             else:
                                 rel_match = re.search(r'(\d+)天前', card_text)
                                 if rel_match:
                                     days_ago = int(rel_match.group(1))
-                                    publish_date = (datetime.datetime.now() - datetime.timedelta(days=days_ago)).strftime("%Y-%m-%d")
+                                    past_date = now - datetime.timedelta(days=days_ago)
+                                    publish_date = past_date.strftime("%Y-%m-%d 12:00:00")
 
                         # Final Default
                         if not publish_date:
-                            publish_date = datetime.datetime.now().strftime("%Y-%m-%d")
+                            publish_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+                        # Date-based filtering during extraction (for early termination)
+                        if days_limit > 0 and publish_date:
+                            try:
+                                # Try parsing with time first, then fallback to date-only
+                                try:
+                                    item_date = datetime.datetime.strptime(publish_date, "%Y-%m-%d %H:%M:%S")
+                                except ValueError:
+                                    item_date = datetime.datetime.strptime(publish_date, "%Y-%m-%d")
+                                if item_date < cutoff_date:
+                                    # This item is too old, skip it
+                                    # But continue to check next items (don't break, as items might not be sorted)
+                                    continue
+                            except:
+                                pass
 
                         # Author Name Logic
                         final_author = source_name
@@ -332,5 +404,9 @@ class DouyinFetcher(BaseFetcher):
             print(f"Error fetching Douyin user {url}: {e}")
             if "Target closed" in str(e) or "browser" in str(e):
                  print("Hint: If browser closed unexpectedly, check if Chrome is installed or remove 'channel' arg.")
+        
+        # 应用日期过滤
+        if days_limit > 0:
+            results = self._filter_by_date(results, days_limit)
             
         return results

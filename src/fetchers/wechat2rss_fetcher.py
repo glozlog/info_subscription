@@ -27,7 +27,7 @@ class Wechat2RssFetcher(BaseFetcher):
             return f"{base_url}/feed/{s}.xml"
         return s
 
-    def fetch(self, url: str) -> List[Dict[str, Any]]:
+    def fetch(self, url: str, limit: int = 20, days_limit: int = 0) -> List[Dict[str, Any]]:
         if not self.validate_url(url):
             return []
 
@@ -38,7 +38,6 @@ class Wechat2RssFetcher(BaseFetcher):
         if getattr(feed, "bozo", False):
             print(f"Warning: Potential error parsing Wechat2RSS feed {feed_url}: {getattr(feed, 'bozo_exception', None)}")
 
-        limit = 20
         for entry in getattr(feed, "entries", [])[:limit]:
             title = entry.get("title", "No Title")
             link = entry.get("link", "")
@@ -82,5 +81,9 @@ class Wechat2RssFetcher(BaseFetcher):
                     "video_url": "",
                 }
             )
+        
+        # 应用日期过滤
+        if days_limit > 0:
+            results = self._filter_by_date(results, days_limit)
 
         return results

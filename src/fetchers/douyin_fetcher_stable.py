@@ -31,6 +31,7 @@ class DouyinFetcher(BaseFetcher):
         """
         Extract publish date from Douyin Aweme ID (Snowflake ID).
         High 32 bits of the ID represent the timestamp (seconds since epoch).
+        Returns datetime in format: YYYY-MM-DD HH:MM:SS
         """
         if not vid or not vid.isdigit():
             return ""
@@ -44,7 +45,7 @@ class DouyinFetcher(BaseFetcher):
             now = datetime.datetime.now()
             
             if 2016 < dt_object.year <= now.year + 1:
-                return dt_object.strftime("%Y-%m-%d")
+                return dt_object.strftime("%Y-%m-%d %H:%M:%S")
         except:
             pass
         return ""
@@ -185,30 +186,33 @@ class DouyinFetcher(BaseFetcher):
                         # Strategy 2: Text-based (Fallback or if ID fails)
                         if not publish_date:
                             card_text = item.inner_text()
+                            now = datetime.datetime.now()
                             # Specific Date format: (3月1日)
                             date_match = re.search(r'[(\uff08](\d{1,2})[月\.\-](\d{1,2})[日\) \uff09]', title)
                             if date_match:
                                 month, day = int(date_match.group(1)), int(date_match.group(2))
-                                now = datetime.datetime.now()
                                 year = now.year
                                 if datetime.datetime(year, month, day) > now + datetime.timedelta(days=1):
                                     year -= 1
-                                publish_date = f"{year}-{month:02d}-{day:02d}"
+                                # Use noon (12:00:00) as default time for date-only sources
+                                publish_date = f"{year}-{month:02d}-{day:02d} 12:00:00"
                             
                             # Relative Time
                             elif "昨天" in card_text:
-                                publish_date = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+                                yesterday = now - datetime.timedelta(days=1)
+                                publish_date = yesterday.strftime("%Y-%m-%d 12:00:00")
                             elif "刚刚" in card_text or "小时前" in card_text or "分钟前" in card_text:
-                                publish_date = datetime.datetime.now().strftime("%Y-%m-%d")
+                                publish_date = now.strftime("%Y-%m-%d %H:%M:%S")
                             else:
                                 rel_match = re.search(r'(\d+)天前', card_text)
                                 if rel_match:
                                     days_ago = int(rel_match.group(1))
-                                    publish_date = (datetime.datetime.now() - datetime.timedelta(days=days_ago)).strftime("%Y-%m-%d")
+                                    past_date = now - datetime.timedelta(days=days_ago)
+                                    publish_date = past_date.strftime("%Y-%m-%d 12:00:00")
 
                         # Final Default
                         if not publish_date:
-                            publish_date = datetime.datetime.now().strftime("%Y-%m-%d")
+                            publish_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
                         # Author Name
                         # If source_name is provided (from config), USE IT.

@@ -1,21 +1,31 @@
 from .base import BaseSummarizer
 from openai import OpenAI
 from typing import List, Optional
+import httpx
 
 class OpenAISummarizer(BaseSummarizer):
     """
     Summarizer implementation using OpenAI's GPT models or DashScope.
+    
+    使用HTTP连接池复用，减少TCP握手开销，提升API调用吞吐量。
     """
     
     def __init__(self, api_key: str, model: str = "gpt-3.5-turbo", base_url: str = None, provider: str = "openai"):
         """
-        Initialize the summarizer.
+        Initialize the summarizer with connection pooling.
+        
+        Args:
+            api_key: API密钥
+            model: 模型名称
+            base_url: 自定义API基础URL
+            provider: 提供商 ('openai' 或 'dashscope')
         """
         self.api_key = api_key
         self.model = model
         self.provider = provider
         self._dashscope = None
         self._dashscope_mm = None
+        self._http_client = None  # HTTP连接池客户端
         
         if not api_key or api_key == "YOUR_API_KEY":
             print("Warning: API Key not configured. Summarization will be disabled.")
@@ -32,8 +42,45 @@ class OpenAISummarizer(BaseSummarizer):
             self._dashscope = dashscope
             self._dashscope_mm = MultiModalConversation
             self.client = "dashscope" # Marker
+            # DashScope使用自己的HTTP客户端，不需要额外配置
         else:
-            self.client = OpenAI(api_key=api_key, base_url=base_url)
+            # OpenAI兼容API - 使用HTTP连接池
+            # 创建带连接池的HTTP客户端
+            self._http_client = httpx.Client(
+                limits=httpx.Limits(
+                    max_keepalive_connections=5,      # 保持5个活跃连接
+                    max_connections=10,               # 最大10个连接
+                    keepalive_expiry=30.0             # 连接保持30秒
+                ),
+                timeout=httpx.Timeout(
+                    connect=10.0,                     # 连接超时10秒
+                    read=60.0,                        # 读取超时60秒
+                    write=10.0,                       # 写入超时10秒
+                    pool=5.0                          # 连接池获取超时5秒
+                )
+            )
+            
+            # 使用自定义HTTP客户端初始化OpenAI客户端
+            self.client = OpenAI(
+                api_key=api_key, 
+                base_url=base_url,
+                http_client=self._http_client
+            )
+            print(f"OpenAI client initialized with connection pooling (max_keepalive=5, max_connections=10)")
+    
+    def __del__(self):
+        """析构时关闭HTTP连接池"""
+        if self._http_client:
+            try:
+                self._http_client.close()
+            except:
+                pass
+    
+    def close(self):
+        """手动关闭HTTP连接池"""
+        if self._http_client:
+            self._http_client.close()
+            self._http_client = None
 
     def summarize(self, content: str, video_url: Optional[str] = None) -> str:
         """
