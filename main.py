@@ -3,10 +3,11 @@ import os
 import json
 import subprocess
 import email.utils
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 from src.utils.config_loader import ConfigLoader
 from src.scheduler.job import JobScheduler
-from typing import Dict, Any
+from typing import Dict, Any, List, Tuple
 
 def main():
     """
@@ -95,110 +96,108 @@ def main():
         
         archiver = FileArchiver(output_dir=archiver_config.get('directory', 'archives'))
         
-        all_fetched_items = []
-        all_summaries = {}
+        # --- Phase 1: Fetch from all subscriptions (serial, fetchers may have side effects) ---
+        items_to_summarize: List[Tuple[Dict[str, Any], str]] = []  # (item, category)
+        skipped = 0
 
         for sub in subscriptions:
             platform = sub.get('platform')
             name = sub.get('name')
             url = sub.get('url')
-            
+            category = sub.get('category', 'General')
+
             if not platform or not url:
                 print(f"Skipping invalid subscription: {sub}")
                 continue
-                
+
             print(f"Fetching from {name} ({platform})...")
-            
+
             try:
                 fetcher = FetcherFactory.get_fetcher(platform)
                 if not fetcher:
                     print(f"No fetcher found for {platform}")
                     continue
-                
-                # Pass source_name to fetcher if supported (e.g. DouyinFetcher)
+
                 import inspect
                 sig = inspect.signature(fetcher.fetch)
                 if 'source_name' in sig.parameters:
                     items = fetcher.fetch(url, source_name=name)
                 else:
-                    # Fallback for fetchers that don't support source_name arg
                     items = fetcher.fetch(url)
-                    
+
                 print(f"  - Fetched {len(items)} items")
-                
-                # Filter items (e.g., only today's) - optional logic here
-                # If days_limit is set, filter by publish_date
+
                 if days_limit > 0:
                     cutoff = datetime.now(timezone.utc) - timedelta(days=days_limit)
-                    filtered_items = []
-                    for item in items:
-                        pd = item.get("publish_date")
-                        dt = _parse_to_datetime_utc(pd)
-                        # Only keep if dt is valid and newer than cutoff
-                        # If date parsing fails (min date), we might skip or keep. Let's skip to be safe.
-                        if dt > cutoff:
-                            filtered_items.append(item)
-                    
-                    print(f"  - Filtered to {len(filtered_items)} items (within {days_limit} days)")
-                    items = filtered_items
-                
-                # OPTIMIZATION: Check if we already have a summary for this URL in today's archive
-                # to avoid re-generating it.
-                # However, Archiver logic currently overwrites the daily file.
-                # So we need to load existing data first if we want to be smart.
-                # But user asked to "re-generate once" now.
-                # So we will proceed with generation.
-                
+                    items = [item for item in items if _parse_to_datetime_utc(item.get("publish_date")) > cutoff]
+                    print(f"  - Filtered to {len(items)} items (within {days_limit} days)")
+
+                # Batch-check which URLs already exist in DB
+                item_urls = [item.get('url') for item in items if item.get('url')]
+                existing_map = db.get_existing_urls(item_urls)
+
                 for item in items:
                     item_url = item.get('url')
-                    content = item.get('content')
-                    video_url = item.get('video_url') # Extract video_url
-                    
-                    # Check if summary already exists in DB
-                    existing_article = db.get_article(item_url)
-                    summary = ""
-                    if existing_article and existing_article.get('summary'):
-                        # Skip processing if we already have it in DB
-                        # This aligns with "Run Now" logic: only process NEW items
-                        # We do NOT add it to all_fetched_items unless we want to rebuild today's report with OLD items too.
-                        # But user request says: "Only process new articles".
-                        # If we skip adding to all_fetched_items, they won't appear in today's report if they were fetched before.
-                        # However, usually daily report should contain TODAY's items.
-                        # If it's an old item already in DB, maybe we shouldn't report it again as "New".
-                        # Let's decide: Only add to report if it was actually summarized NOW or if it's considered "today's news".
-                        
-                        # Current Logic:
-                        # 1. If exists in DB, skip summary generation.
-                        # 2. DO NOT add to all_fetched_items (so it won't be in the new report segment).
-                        print(f"  - [Skip] Already in DB: {item.get('title')}")
+                    if item_url in existing_map and existing_map[item_url]:
+                        skipped += 1
                         continue
-                    
-                    if not summary:
-                        print(f"  - Summarizing: {item.get('title')}")
-                        summary = summarizer.summarize(content, video_url=video_url)
-                    
-                    # Save to DB (Full Archive)
-                    # For Run Now, we save new item.
-                    # For Full Regen, we overwrite.
-                    item['summary'] = summary
-                    db.save_article(item, summary)
-                    
-                    all_summaries[item_url] = summary
-                    
-                    # Tag the item with category from config
-                    item['category'] = sub.get('category', 'General')
-                    all_fetched_items.append(item)
-                    
+                    items_to_summarize.append((item, category))
+
             except Exception as e:
-                print(f"Error processing subscription {name}: {e}")
-                
-        # Generate daily report ONLY if we have new items
+                print(f"Error fetching subscription {name}: {e}")
+
+        if skipped:
+            print(f"Skipped {skipped} articles already in DB.")
+
+        if not items_to_summarize:
+            print("No new items to process.")
+            print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] Update job completed.")
+            return
+
+        # --- Phase 2: Parallel summarization ---
+        print(f"Summarizing {len(items_to_summarize)} new articles (max 4 concurrent)...")
+        t_start = time.time()
+
+        all_fetched_items = []
+        all_summaries = {}
+
+        def _summarize_item(item: Dict[str, Any]) -> Tuple[Dict[str, Any], str]:
+            content = item.get('content')
+            video_url = item.get('video_url')
+            summary = summarizer.summarize(content, video_url=video_url)
+            return item, summary
+
+        max_workers = min(4, len(items_to_summarize))
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_category = {}
+            for item, category in items_to_summarize:
+                future = executor.submit(_summarize_item, item)
+                future_to_category[future] = category
+
+            for i, future in enumerate(as_completed(future_to_category), 1):
+                category = future_to_category[future]
+                try:
+                    item, summary = future.result()
+                    item['summary'] = summary
+                    item['category'] = category
+                    all_summaries[item.get('url')] = summary
+                    all_fetched_items.append(item)
+                    print(f"  [{i}/{len(items_to_summarize)}] {item.get('title', '')[:50]}")
+                except Exception as e:
+                    print(f"  [{i}/{len(items_to_summarize)}] Summarization failed: {e}")
+
+        elapsed = time.time() - t_start
+        print(f"Summarization done in {elapsed:.1f}s ({len(all_fetched_items)} articles)")
+
+        # --- Phase 3: Batch save + report ---
         if all_fetched_items:
-            print("Generating daily report for NEW items...")
+            saved = db.save_articles_batch(all_fetched_items)
+            print(f"Saved {saved} new articles to DB.")
+            print("Generating daily report...")
             archiver.generate_report(all_fetched_items, all_summaries)
         else:
             print("No new items fetched.")
-            
+
         print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] Update job completed.")
 
     def _python_executable():
@@ -262,29 +261,51 @@ def main():
         db = DatabaseManager()
 
         articles = db.get_all_articles(limit=50000)
-        updated_articles = []
-
         total = len(articles)
-        for i, article in enumerate(articles, start=1):
+        print(f"Regenerating summaries for {total} articles...")
+
+        # Phase 1: Pre-fetch WeChat content serially (subprocess-based, not parallelizable)
+        refetched = 0
+        for article in articles:
             url = article.get("url", "")
             content = article.get("content") or ""
-            video_url = article.get("video_url") or None
-
             if url and "mp.weixin.qq.com" in url and len(content) < 200:
                 fetched = _fetch_wechat_content_by_playwright(url)
                 if fetched and len(fetched) > len(content):
-                    content = fetched
-                    db.update_content(url, content)
-                    article["content"] = content
+                    db.update_content(url, fetched)
+                    article["content"] = fetched
+                    refetched += 1
+        if refetched:
+            print(f"Re-fetched content for {refetched} WeChat articles.")
 
+        # Phase 2: Parallel summarization
+        t_start = time.time()
+        completed = 0
+
+        def _summarize_article(article: Dict[str, Any]) -> Tuple[Dict[str, Any], str]:
+            content = article.get("content") or ""
+            video_url = article.get("video_url") or None
             summary = summarizer.summarize(content, video_url=video_url)
-            db.update_summary(url, summary)
-            article["summary"] = summary
+            return article, summary
 
-            updated_articles.append(article)
-            if i % 20 == 0 or i == total:
-                print(f"Regenerated {i}/{total}")
+        max_workers = min(4, total)
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = {executor.submit(_summarize_article, a): a for a in articles}
+            for future in as_completed(futures):
+                try:
+                    article, summary = future.result()
+                    article["summary"] = summary
+                    db.update_summary(article.get("url", ""), summary)
+                except Exception as e:
+                    print(f"Error summarizing {futures[future].get('url', '?')}: {e}")
+                completed += 1
+                if completed % 20 == 0 or completed == total:
+                    print(f"Regenerated {completed}/{total}")
 
+        elapsed = time.time() - t_start
+        print(f"Summarization done in {elapsed:.1f}s")
+
+        # Phase 3: Rebuild archives
         archive_dir = config.get("output", {}).get("directory", "archives")
         existing_dates = set()
         if os.path.isdir(archive_dir):
@@ -298,7 +319,7 @@ def main():
             from src.archiver.file_archiver import FileArchiver
             archiver = FileArchiver(output_dir=archive_dir)
             for date_str in sorted(existing_dates):
-                items = [a for a in updated_articles if _date_str_from_publish_date(a.get("publish_date", "")) == date_str]
+                items = [a for a in articles if _date_str_from_publish_date(a.get("publish_date", "")) == date_str]
                 summaries = {a.get("url", ""): a.get("summary", "") for a in items if a.get("url")}
                 archiver.generate_report_for_date(date_str, items, summaries)
                 print(f"Rebuilt archive: {date_str}")
